@@ -1,493 +1,106 @@
-<!-- =====================================================
-     HERO SECTION
-===================================================== -->
-
-<section class="hero">
-
-    <div class="container hero-container">
-
-        <!-- Konten Hero -->
-        <div class="hero-content">
-
-            <span class="hero-badge">
-                ✦ Pelayanan Kesehatan Terpercaya
-            </span>
-
-            <h1>
-                Kesehatan Anda,
-                <span>Prioritas Kami.</span>
-            </h1>
-
-            <p>
-                Summit Medical Center hadir memberikan pelayanan kesehatan
-                yang profesional, modern, dan berorientasi pada kebutuhan
-                setiap pasien dan keluarga.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="<?= base_url('appointment'); ?>" class="btn btn-primary">
-                    Buat Janji
-                </a>
-
-                <a href="<?= base_url('services'); ?>" class="btn btn-outline">
-                    Lihat Layanan
-                </a>
-
+<div class="hero-professional mb-5">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-md-8 text-white">
+                <h1 class="display-4">Pelayanan Kesehatan Profesional & Terpercaya</h1>
+                <p class="lead mb-4">Fasilitas modern dan tenaga medis ahli untuk kesehatan anda dan keluarga di Summit Medical Center.</p>
+                <a href="<?= base_url('doctors'); ?>" class="btn btn-primary btn-lg rounded-pill px-4">Jadwal Dokter</a>
+                <a href="<?= base_url('services'); ?>" class="btn btn-outline-light btn-lg rounded-pill px-4 ms-2">Layanan Kami</a>
             </div>
-
         </div>
-
-
-        <!-- Area Gambar -->
-        <div class="hero-image">
-
-            <div>
-                <strong>Summit Medical Center</strong>
-                <p>
-                    Modern Healthcare
-                </p>
-            </div>
-
-        </div>
-
     </div>
+</div>
 
-</section>
-
-<!-- =========================
-     LAYANAN UNGGULAN
-     ========================= -->
-
-<section class="section section-light">
-
-    <div class="container">
-
-        <!-- Judul Section -->
-        <div class="section-header">
-
-            <div class="section-label">
-                Layanan Kami
-            </div>
-
-            <h2 class="section-title">
-                Pelayanan Kesehatan untuk Anda
-            </h2>
-
-            <p class="section-description">
-                Kami menyediakan berbagai layanan kesehatan dengan
-                dukungan tenaga medis profesional dan fasilitas modern.
-            </p>
-
+<div class="container mt-5">
+    
+<!-- Bagian Layanan Unggulan -->
+    <div class="row mb-5 text-center">
+        <div class="col-12 mb-4">
+            <h2 class="section-title">Layanan Unggulan</h2>
+            <p class="text-muted">Dedikasi kami untuk memberikan layanan medis terbaik sesuai standar operasional.</p>
         </div>
-
-
-        <!-- Card Layanan -->
-        <div class="service-grid">
-
-            <!-- Layanan 1 -->
-            <div class="service-card">
-
-                <div class="card-icon">
-                    ✚
-                </div>
-
-                <h3>
-                    Rawat Jalan
-                </h3>
-
-                <p>
-                    Pemeriksaan dan konsultasi kesehatan bersama
-                    dokter sesuai kebutuhan Anda.
-                </p>
-
-            </div>
-
-
-            <!-- Layanan 2 -->
-            <div class="service-card">
-
-                <div class="card-icon">
-                    ❤
-                </div>
-
-                <h3>
-                    IGD 24 Jam
-                </h3>
-
-                <p>
-                    Layanan gawat darurat yang siap memberikan
-                    pertolongan medis selama 24 jam.
-                </p>
-
-            </div>
-
-
-            <!-- Layanan 3 -->
-            <div class="service-card">
-
-                <div class="card-icon">
-                    +
-                </div>
-
-                <h3>
-                    Rawat Inap
-                </h3>
-
-                <p>
-                    Fasilitas rawat inap yang nyaman dengan
-                    pelayanan dan pemantauan tenaga medis.
-                </p>
-
-            </div>
-
-
-            <!-- Layanan 4 -->
-            <div class="service-card">
-
-                <div class="card-icon">
-                    ♡
-                </div>
-
-                <h3>
-                    Klinik Spesialis
-                </h3>
-
-                <p>
-                    Konsultasi dengan dokter spesialis dari
-                    berbagai bidang kesehatan.
-                </p>
-
-            </div>
-
-
-            <!-- Layanan 5 -->
-            <div class="service-card">
-
-                <div class="card-icon">
-                    ◉
-                </div>
-
-                <h3>
-                    Laboratorium
-                </h3>
-
-                <p>
-                    Pemeriksaan laboratorium untuk membantu
-                    menunjang diagnosis dan pemantauan kesehatan.
-                </p>
-
-            </div>
-
-
-            <!-- Layanan 6 -->
-            <div class="service-card">
-
-                <div class="card-icon">
-                    ▣
-                </div>
-
-                <h3>
-                    Radiologi
-                </h3>
-
-                <p>
-                    Pemeriksaan penunjang menggunakan teknologi
-                    pencitraan medis.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-<section class="articles-section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <span class="section-label">
-                INFORMASI KESEHATAN
-            </span>
-
-            <h2>
-                Artikel
-                <span>Terbaru</span>
-            </h2>
-
-            <p>
-                Informasi kesehatan dan tips terpercaya
-                dari Summit Medical.
-            </p>
-
-        </div>
-
-
-        <div class="articles-grid">
-
-            <?php if (!empty($articles)): ?>
-
-                <?php foreach ($articles as $article): ?>
-
-                    <article class="article-card">
-
-                        <div class="article-card-content">
-
-                            <span class="article-date">
-                                <?= date(
-                                    'd F Y',
-                                    strtotime($article->created_at)
-                                ); ?>
-                            </span>
-
-                            <h3>
-                                <?= htmlspecialchars($article->title); ?>
-                            </h3>
-
-                            <p>
-                                <?= htmlspecialchars(
-                                    word_limiter(
-                                        strip_tags($article->content),
-                                        20
-                                    )
-                                ); ?>
-                            </p>
-
-                            <a
-                                href="<?= site_url('articles/detail/' . $article->slug); ?>"
-                                class="article-link">
-
-                                Baca Selengkapnya →
-
-                            </a>
-
+        
+        <?php if (!empty($services)) : ?>
+            <?php foreach ($services as $service) : ?>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box p-4 border rounded shadow-sm bg-white h-100">
+                        <div class="icon-box text-primary mb-3">
+                            <i class="fas fa-stethoscope fa-3x"></i>
                         </div>
-
-                    </article>
-
-                <?php endforeach; ?>
-
-            <?php else: ?>
-
-                <p>
-                    Belum ada artikel.
-                </p>
-
-            <?php endif; ?>
-
-        </div>
-
-
-        <div class="articles-more">
-
-            <a
-                href="<?= site_url('articles'); ?>"
-                class="articles-button">
-
-                Lihat Semua Artikel
-
-            </a>
-
-        </div>
-
+                        <h5 class="mb-3"><?= htmlspecialchars($service->name); ?></h5>
+                        <p class="text-muted small"><?= htmlspecialchars($service->description); ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-12 text-center">
+                <p class="text-muted">Data layanan belum tersedia.</p>
+            </div>
+        <?php endif; ?>
     </div>
 
-</section>
-
-
-<!-- =====================================================
-     QUICK INFO
-===================================================== -->
-
-<section class="quick-info">
-
-    <div class="quick-info-container">
-
-        <div class="info-card">
-
-            <span class="info-icon">🩺</span>
-
-            <div>
-                <strong>Dokter Profesional</strong>
-                <p>Tenaga medis berpengalaman</p>
-            </div>
-
+    <!-- Bagian Dokter -->
+    <div class="row mb-5 bg-light p-5 rounded shadow-sm">
+        <div class="col-12 text-center mb-5">
+            <h2 class="section-title">Tim Dokter Spesialis</h2>
         </div>
-
-
-        <div class="info-card">
-
-            <span class="info-icon">🏥</span>
-
-            <div>
-                <strong>Fasilitas Modern</strong>
-                <p>Didukung teknologi kesehatan</p>
+        <?php if (!empty($doctors)) : ?>
+            <?php foreach ($doctors as $doctor) : ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm custom-card border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="mb-3">
+                                <img src="https://ui-avatars.com/api/?name=<?= urlencode($doctor->name); ?>&background=random&color=fff&size=120" alt="Foto Dokter" class="img-fluid rounded-circle doctor-avatar">
+                            </div>
+                            <h5 class="card-title"><?= htmlspecialchars($doctor->name); ?></h5>
+                            <p class="card-text text-muted small mb-4">
+                                <?= htmlspecialchars($doctor->education); ?>
+                            </p>
+                            <a href="<?= base_url('doctors/detail/' . $doctor->id); ?>" class="btn btn-sm btn-outline-primary rounded-pill w-100">Profil Dokter</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-12 text-center">
+                <p class="text-muted">Data dokter belum tersedia.</p>
             </div>
-
-        </div>
-
-
-        <div class="info-card">
-
-            <span class="info-icon">⏰</span>
-
-            <div>
-                <strong>Pelayanan Terjadwal</strong>
-                <p>Siap membantu kebutuhan Anda</p>
-            </div>
-
-        </div>
-
+        <?php endif; ?>
     </div>
 
-</section>
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section class="about">
-
-    <div class="about-container">
-
-        <div class="about-image">
-
-            <div class="about-image-placeholder">
-                Summit Medical Center
+    <!-- Bagian Berita dan Artikel -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-5">
+            <h2 class="section-title">Berita & Informasi Kesehatan</h2>
+            <p class="text-muted">Dapatkan informasi terbaru seputar rumah sakit dan artikel edukasi kesehatan.</p>
+        </div>
+        <?php if (!empty($latest_articles)) : ?>
+            <?php foreach ($latest_articles as $article) : ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm custom-card border-0">
+                        <!-- Menambahkan gambar ilustrasi sementara untuk artikel -->
+                        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Ilustrasi Artikel">
+                        
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-2"><?= htmlspecialchars($article->title); ?></h5>
+                            <div class="article-meta mb-3 text-primary">
+                                <?= date('d M Y', strtotime($article->created_at)); ?>
+                            </div>
+                            <p class="card-text text-muted">
+                                <?= substr(strip_tags($article->content), 0, 100); ?>...
+                            </p>
+                            <a href="<?= base_url('articles/detail/' . $article->slug); ?>" class="text-primary text-decoration-none">
+                                Selengkapnya &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-12 text-center">
+                <p class="text-muted">Artikel belum tersedia.</p>
             </div>
-
-        </div>
-
-
-        <div class="about-content">
-
-            <span class="section-label">
-                Tentang Kami
-            </span>
-
-            <h2>
-                Pelayanan Kesehatan
-                dengan Standar Terbaik
-            </h2>
-
-            <p>
-                Summit Medical Center merupakan pusat pelayanan
-                kesehatan yang mengutamakan kualitas, keamanan,
-                dan kenyamanan pasien.
-            </p>
-
-            <p>
-                Kami didukung oleh tenaga medis profesional,
-                fasilitas yang memadai, serta pelayanan yang
-                mengedepankan kebutuhan setiap pasien.
-            </p>
-
-            <a href="<?= base_url('tentang'); ?>" class="text-link">
-                Selengkapnya →
-            </a>
-
-        </div>
-
+        <?php endif; ?>
     </div>
 
-</section>
-
-
-<!-- =====================================================
-     SERVICES
-===================================================== -->
-
-<section class="services">
-
-    <div class="section-header">
-
-        <span class="section-label">
-            Layanan Kami
-        </span>
-
-        <h2>
-            Layanan Kesehatan untuk Anda
-        </h2>
-
-        <p>
-            Berbagai layanan kesehatan yang dirancang untuk
-            memberikan pelayanan terbaik kepada pasien.
-        </p>
-
-    </div>
-
-
-    <div class="services-container">
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                🩺
-            </div>
-
-            <h3>
-                Poliklinik
-            </h3>
-
-            <p>
-                Pelayanan konsultasi dan pemeriksaan
-                oleh dokter profesional.
-            </p>
-
-            <a href="<?= base_url('layanan'); ?>">
-                Lihat layanan →
-            </a>
-
-        </div>
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                ❤️
-            </div>
-
-            <h3>
-                Pemeriksaan Kesehatan
-            </h3>
-
-            <p>
-                Pemeriksaan kesehatan dengan proses
-                yang nyaman dan terpercaya.
-            </p>
-
-            <a href="<?= base_url('layanan'); ?>">
-                Lihat layanan →
-            </a>
-
-        </div>
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                🧪
-            </div>
-
-            <h3>
-                Laboratorium
-            </h3>
-
-            <p>
-                Pemeriksaan laboratorium dengan dukungan
-                peralatan yang modern.
-            </p>
-
-            <a href="<?= base_url('layanan'); ?>">
-                Lihat layanan →
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
+</div>

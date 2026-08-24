@@ -1,100 +1,29 @@
-<section class="articles-page">
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
-    <div class="articles-container">
-
-        <div class="articles-header">
-
-            <div>
-                <span class="section-label">ARTIKEL</span>
-
-                <h1>Edit Artikel</h1>
-
-                <p>
-                    Perbarui informasi artikel.
-                </p>
-            </div>
-
-            <a href="<?= base_url('articles'); ?>" class="btn-primary">
-                Kembali
-            </a>
-
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 text-primary">Form Edit Artikel</h6>
         </div>
-
-
-        <div class="article-form-wrapper">
-
+        <div class="card-body">
             <form action="<?= base_url('articles/edit/' . $article->id); ?>" method="post">
-
-                <div class="form-group">
-
-                    <label for="title">
-                        Judul Artikel
-                    </label>
-
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value="<?= htmlspecialchars($article->title); ?>"
-                        required
-                    >
-
+                <div class="form-group mb-3">
+                    <label for="title">Judul Artikel</label>
+                    <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($article->title); ?>" required placeholder="Masukkan judul artikel">
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="slug">
-                        Slug
-                    </label>
-
-                    <input
-                        type="text"
-                        id="slug"
-                        name="slug"
-                        value="<?= htmlspecialchars($article->slug); ?>"
-                        required
-                    >
-
+                <div class="form-group mb-4">
+                    <label for="content">Isi Artikel</label>
+                    <textarea class="form-control" id="content" name="content" rows="10" required placeholder="Tulis konten artikel di sini..."><?= htmlspecialchars($article->content); ?></textarea>
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="content">
-                        Isi Artikel
-                    </label>
-
-                    <textarea
-                        id="content"
-                        name="content"
-                        rows="10"
-                        required
-                    ><?= htmlspecialchars($article->content); ?></textarea>
-
-                </div>
-
-
-                <div class="form-actions">
-
-                    <a
-                        href="<?= base_url('articles'); ?>"
-                        class="btn-cancel">
-                        Batal
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="btn-primary">
-                        Update Artikel
-                    </button>
-
-                </div>
-
+                <button type="submit" class="btn btn-primary">
+                    Update Artikel
+                </button>
+                <a href="<?= base_url('articles/admin_index'); ?>" class="btn btn-secondary">
+                    Batal
+                </a>
             </form>
-
         </div>
-
     </div>
-
-</section>
+</div>

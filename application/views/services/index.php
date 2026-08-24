@@ -1,79 +1,30 @@
-<section class="page-header">
-    <div class="container">
-        <span class="section-label">LAYANAN KAMI</span>
-
-        <h1>
-            Layanan Kesehatan
-            <span>Terpercaya</span>
-        </h1>
-
-        <p>
-            Kami menyediakan berbagai layanan kesehatan dengan
-            tenaga medis profesional dan fasilitas yang nyaman.
-        </p>
-    </div>
-</section>
-
-<section class="services-section">
-    <div class="container">
-
-        <div class="services-grid">
-
-            <div class="service-card">
-                <div class="service-icon">✚</div>
-                <h3>Poli Umum</h3>
-                <p>
-                    Pemeriksaan kesehatan umum untuk berbagai
-                    keluhan dan kebutuhan medis.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">♥</div>
-                <h3>Poli Jantung</h3>
-                <p>
-                    Pemeriksaan dan penanganan kesehatan
-                    jantung oleh tenaga medis profesional.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">⚕</div>
-                <h3>Poli Anak</h3>
-                <p>
-                    Pelayanan kesehatan khusus untuk bayi,
-                    anak-anak, dan remaja.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">+</div>
-                <h3>Laboratorium</h3>
-                <p>
-                    Pemeriksaan laboratorium untuk membantu
-                    proses diagnosis dan pemantauan kesehatan.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">▣</div>
-                <h3>Radiologi</h3>
-                <p>
-                    Pemeriksaan menggunakan teknologi pencitraan
-                    untuk mendukung diagnosis dokter.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">24</div>
-                <h3>IGD 24 Jam</h3>
-                <p>
-                    Layanan gawat darurat yang tersedia
-                    selama 24 jam setiap hari.
-                </p>
-            </div>
-
+<div class="container mt-5 mb-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="h2 font-weight-bold text-primary">Layanan Medis Kami</h1>
+            <p class="text-muted">Summit Medical Center menyediakan fasilitas dan layanan kesehatan komprehensif.</p>
         </div>
-
     </div>
-</section>
+
+    <div class="row">
+        <?php if (!empty($services)) : ?>
+            <?php foreach ($services as $service) : ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0 p-3">
+                        <div class="card-body">
+                            <div class="text-primary mb-3">
+                                <i class="fas fa-hospital-alt fa-2x"></i>
+                            </div>
+                            <h5 class="card-title font-weight-bold"><?= htmlspecialchars($service->name); ?></h5>
+                            <p class="card-text text-muted"><?= htmlspecialchars($service->description); ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-12 text-center">
+                <p class="text-muted">Belum ada data layanan.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

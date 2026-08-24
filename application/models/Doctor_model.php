@@ -23,4 +23,16 @@ class Doctor_model extends CI_Model
     {
         return $this->db->insert('doctors', $data);
     }
+
+    public function updateDoctor($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('doctors', $data);
+    }
+
+    public function deleteDoctor($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('doctors');
+    }
 }

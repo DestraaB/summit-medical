@@ -10,8 +10,13 @@ class Doctors extends CI_Controller
         $this->load->model('Doctor_model');
         $this->load->model('Specialty_model');
 
+        $this->load->library('session');
         $this->load->library('form_validation');
     }
+
+    // =========================================
+    // HAK AKSES: PUBLIC (PENGUNJUNG)
+    // =========================================
 
     public function index()
     {
@@ -43,71 +48,61 @@ class Doctors extends CI_Controller
         $this->load->view('doctors/detail', $data);
         $this->load->view('templates/footer');
     }
+
+
+    // =========================================
+    // HAK AKSES: ADMIN (PENGELOLA)
+    // =========================================
+
+    public function admin_index()
+    {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
+
+        $data['title'] = 'Data Dokter';
+        $data['doctors'] = $this->Doctor_model->getAllDoctors();
+
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('templates/admin/navbar', $data);
+        $this->load->view('admin/doctors/index', $data);
+        $this->load->view('templates/admin/footer', $data);
+    }
+
     public function create()
     {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
+
         $data['title'] = 'Tambah Dokter';
         $data['specialties'] = $this->Specialty_model->getAllSpecialties();
 
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('templates/admin/navbar', $data);
         $this->load->view('admin/doctors/create', $data);
+        $this->load->view('templates/admin/footer', $data);
     }
+
     public function store()
     {
-        // =========================
-        // VALIDASI
-        // =========================
-
-        $this->form_validation->set_rules(
-            'specialty_id',
-            'Specialty',
-            'required'
-        );
-
-        $this->form_validation->set_rules(
-            'name',
-            'Nama Dokter',
-            'required|trim'
-        );
-
-        $this->form_validation->set_rules(
-            'education',
-            'Pendidikan',
-            'required|trim'
-        );
-
-        $this->form_validation->set_rules(
-            'experience',
-            'Pengalaman',
-            'required|trim'
-        );
-
-        $this->form_validation->set_rules(
-            'description',
-            'Deskripsi',
-            'required|trim'
-        );
-
-        $this->form_validation->set_rules(
-            'status',
-            'Status',
-            'required'
-        );
-
-
-        // =========================
-        // JIKA VALIDASI GAGAL
-        // =========================
-
-        if ($this->form_validation->run() == FALSE) {
-
-            $this->create();
-
-            return;
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
         }
 
+        $this->form_validation->set_rules('specialty_id', 'Specialty', 'required');
+        $this->form_validation->set_rules('name', 'Nama Dokter', 'required|trim');
+        $this->form_validation->set_rules('education', 'Pendidikan', 'required|trim');
+        $this->form_validation->set_rules('experience', 'Pengalaman', 'required|trim');
+        $this->form_validation->set_rules('description', 'Deskripsi', 'required|trim');
+        $this->form_validation->set_rules('status', 'Status', 'required');
 
-        // =========================
-        // DATA DOKTER
-        // =========================
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+            return;
+        }
 
         $data = [
             'specialty_id' => $this->input->post('specialty_id', TRUE),
@@ -120,28 +115,75 @@ class Doctors extends CI_Controller
             'updated_at'   => date('Y-m-d H:i:s')
         ];
 
-
-        // =========================
-        // SIMPAN
-        // =========================
-
         $this->Doctor_model->insertDoctor($data);
 
+        $this->session->set_flashdata('success', 'Data dokter berhasil ditambahkan.');
 
-        // =========================
-        // PESAN BERHASIL
-        // =========================
+        redirect('doctors/admin_index');
+    }
 
-        $this->session->set_flashdata(
-            'success',
-            'Data dokter berhasil ditambahkan.'
-        );
+    public function edit($id)
+    {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
 
+        $data['title'] = 'Edit Dokter';
+        $data['doctor'] = $this->Doctor_model->getDoctorById($id);
+        $data['specialties'] = $this->Specialty_model->getAllSpecialties();
 
-        // =========================
-        // REDIRECT
-        // =========================
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('templates/admin/navbar', $data);
+        $this->load->view('admin/doctors/edit', $data);
+        $this->load->view('templates/admin/footer', $data);
+    }
 
-        redirect('doctors');
+    public function update($id)
+    {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
+
+        $this->form_validation->set_rules('specialty_id', 'Specialty', 'required');
+        $this->form_validation->set_rules('name', 'Nama Dokter', 'required|trim');
+        $this->form_validation->set_rules('education', 'Pendidikan', 'required|trim');
+        $this->form_validation->set_rules('experience', 'Pengalaman', 'required|trim');
+        $this->form_validation->set_rules('description', 'Deskripsi', 'required|trim');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit($id);
+            return;
+        }
+
+        $data = [
+            'specialty_id' => $this->input->post('specialty_id', TRUE),
+            'name'         => $this->input->post('name', TRUE),
+            'education'    => $this->input->post('education', TRUE),
+            'experience'   => $this->input->post('experience', TRUE),
+            'description'  => $this->input->post('description', TRUE),
+            'status'       => $this->input->post('status', TRUE),
+            'updated_at'   => date('Y-m-d H:i:s')
+        ];
+
+        $this->Doctor_model->updateDoctor($id, $data);
+
+        $this->session->set_flashdata('success', 'Data dokter berhasil diupdate.');
+
+        redirect('doctors/admin_index');
+    }
+
+    public function delete($id)
+    {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
+
+        $this->Doctor_model->deleteDoctor($id);
+
+        $this->session->set_flashdata('success', 'Data dokter berhasil dihapus.');
+
+        redirect('doctors/admin_index');
     }
 }
