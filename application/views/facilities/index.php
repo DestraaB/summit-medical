@@ -1,118 +1,30 @@
-<section class="page-header">
-    <div class="container">
-
-        <span class="section-label">FASILITAS KAMI</span>
-
-        <h1>
-            Fasilitas
-            <span>Modern & Nyaman</span>
-        </h1>
-
-        <p>
-            Summit Medical Center menyediakan fasilitas kesehatan
-            yang modern, nyaman, dan dirancang untuk mendukung
-            kebutuhan pasien.
-        </p>
-
-    </div>
-</section>
-
-
-<section class="facilities-section">
-    <div class="container">
-
-        <div class="facilities-grid">
-
-            <div class="facility-card">
-                <div class="facility-image">
-                    <span>🏥</span>
-                </div>
-
-                <div class="facility-content">
-                    <h3>Gedung Rumah Sakit</h3>
-                    <p>
-                        Lingkungan rumah sakit yang bersih,
-                        modern, dan nyaman bagi pasien maupun keluarga.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="facility-card">
-                <div class="facility-image">
-                    <span>🛏️</span>
-                </div>
-
-                <div class="facility-content">
-                    <h3>Ruang Rawat Inap</h3>
-                    <p>
-                        Ruang perawatan yang nyaman dengan
-                        fasilitas yang mendukung proses pemulihan pasien.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="facility-card">
-                <div class="facility-image">
-                    <span>🔬</span>
-                </div>
-
-                <div class="facility-content">
-                    <h3>Laboratorium</h3>
-                    <p>
-                        Didukung peralatan pemeriksaan untuk
-                        membantu proses diagnosis pasien.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="facility-card">
-                <div class="facility-image">
-                    <span>🩻</span>
-                </div>
-
-                <div class="facility-content">
-                    <h3>Radiologi</h3>
-                    <p>
-                        Fasilitas pencitraan medis untuk mendukung
-                        pemeriksaan dan diagnosis dokter.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="facility-card">
-                <div class="facility-image">
-                    <span>🚑</span>
-                </div>
-
-                <div class="facility-content">
-                    <h3>Ambulans</h3>
-                    <p>
-                        Layanan transportasi medis untuk membantu
-                        kebutuhan pasien dalam kondisi tertentu.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="facility-card">
-                <div class="facility-image">
-                    <span>🛋️</span>
-                </div>
-
-                <div class="facility-content">
-                    <h3>Ruang Tunggu</h3>
-                    <p>
-                        Area tunggu yang nyaman untuk pasien
-                        dan keluarga selama mendapatkan pelayanan.
-                    </p>
-                </div>
-            </div>
-
+<div class="container mt-5 mb-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="h2 font-weight-bold text-primary">Fasilitas Kami</h1>
+            <p class="text-muted">Fasilitas modern dan lengkap untuk menunjang kenyamanan serta kesembuhan pasien.</p>
         </div>
-
     </div>
-</section>
+
+    <div class="row">
+        <?php if (!empty($facilities)) : ?>
+            <?php foreach ($facilities as $facility) : ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm border-0 p-3 custom-card">
+                        <div class="card-body text-center">
+                            <div class="text-primary mb-3">
+                                <i class="fas fa-building fa-3x"></i>
+                            </div>
+                            <h5 class="card-title font-weight-bold"><?= htmlspecialchars($facility->name); ?></h5>
+                            <p class="card-text text-muted"><?= htmlspecialchars($facility->description); ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-12 text-center">
+                <p class="text-muted">Belum ada data fasilitas.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

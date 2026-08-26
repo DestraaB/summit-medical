@@ -1,87 +1,32 @@
-<section class="page-header">
-    <div class="container">
-
-        <span class="section-label">TIM MEDIS</span>
-
-        <h1>
-            Dokter
-            <span>Profesional Kami</span>
-        </h1>
-
-        <p>
-            Didukung oleh dokter dan tenaga medis profesional
-            yang berkomitmen memberikan pelayanan kesehatan terbaik.
-        </p>
-
-    </div>
-</section>
-
-
-<section class="doctors-section">
-    <div class="container">
-
-        <div class="doctors-grid">
-
-            <?php if (!empty($doctors)): ?>
-
-                <?php foreach ($doctors as $doctor): ?>
-
-                    <div class="doctor-card">
-
-                        <div class="doctor-image">
-
-                            <?php if (!empty($doctor->photo)): ?>
-
-                                <img
-                                    src="<?= base_url('uploads/doctors/' . $doctor->photo); ?>"
-                                    alt="<?= htmlspecialchars($doctor->name); ?>">
-
-                            <?php else: ?>
-
-                                <div class="doctor-placeholder">
-                                    👨‍⚕️
-                                </div>
-
-                            <?php endif; ?>
-
-                        </div>
-
-                        <div class="doctor-info">
-
-                            <span class="doctor-specialty">
-                                Dokter Profesional
-                            </span>
-
-                            <h3>
-                                <?= htmlspecialchars($doctor->name); ?>
-                            </h3>
-
-                            <p>
-                                <?= htmlspecialchars($doctor->description); ?>
-                            </p>
-
-                            <!-- TOMBOL DETAIL -->
-                            <a
-                                href="<?= site_url('doctors/detail/' . $doctor->id); ?>"
-                                class="doctor-detail-btn">
-
-                                Lihat Profil Dokter →
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                <?php endforeach; ?>
-
-            <?php else: ?>
-
-                <p>Data dokter belum tersedia.</p>
-
-            <?php endif; ?>
-
+<div class="container mt-5 mb-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="h2 text-primary" style="font-weight: 700;">Jadwal & Profil Dokter</h1>
+            <p class="text-muted">Temukan dokter spesialis terbaik untuk kebutuhan kesehatan Anda di Summit Medical Center.</p>
         </div>
-
     </div>
-</section>
+
+    <div class="row">
+        <?php if (!empty($doctors)) : ?>
+            <?php foreach ($doctors as $doctor) : ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm border-0 custom-card text-center p-3">
+                        <div class="mb-3">
+                            <img src="https://ui-avatars.com/api/?name=<?= urlencode($doctor->name); ?>&background=random&color=fff&size=120" alt="Foto Dokter" class="img-fluid rounded-circle doctor-avatar">
+                        </div>
+                        <h5 class="card-title text-dark" style="font-weight: 600;"><?= htmlspecialchars($doctor->name); ?></h5>
+                        <p class="card-text text-primary small mb-1">
+                            <?= isset($doctor->specialty_name) ? htmlspecialchars($doctor->specialty_name) : 'Spesialis'; ?>
+                        </p>
+                        <p class="card-text text-muted small mb-3"><?= htmlspecialchars($doctor->education); ?></p>
+                        <a href="<?= base_url('doctors/detail/' . $doctor->id); ?>" class="btn btn-outline-primary btn-sm rounded-pill mt-auto">Lihat Profil</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-12 text-center">
+                <p class="text-muted">Data dokter belum tersedia.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
