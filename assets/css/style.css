@@ -75,3 +75,63 @@
     font-size: 0.85rem;
     font-weight: 500;
 }
+
+
+.hero-left-box {
+    background-color: #0046b8;
+    border-radius: 20px;
+}
+
+.stats-box {
+    background-color: #0046b8;
+    border-radius: 12px;
+}
+
+.search-doctor-box input {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.search-doctor-box input:focus {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    outline: none;
+}
+
+.btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #0046b8;
+    font-weight: 500;
+}
+
+/* Efek Hover Garis Bawah pada Navbar */
+.nav-hover-line {
+    position: relative;
+    color: #333 !important;
+    transition: color 0.3s ease;
+}
+
+.nav-hover-line::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #0046b8;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-hover-line:hover {
+    color: #0046b8 !important;
+}
+
+.nav-hover-line:hover::after {
+    width: 80%;
+}
+
+/* Penyesuaian Dropdown */
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #0046b8;
+}
