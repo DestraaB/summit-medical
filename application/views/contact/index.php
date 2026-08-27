@@ -19,7 +19,7 @@
                         </div>
                         <div>
                             <h6 class="font-weight-bold mb-1">Alamat</h6>
-                            <p class="text-muted mb-0">Jl. Pangeran Mangkubumi No. 123,<br>Gowongan, Jetis,<br>Yogyakarta 55232</p>
+                            <p class="text-muted mb-0"><?= nl2br(htmlspecialchars($profile->address)); ?></p>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
                         </div>
                         <div>
                             <h6 class="font-weight-bold mb-1">Telepon</h6>
-                            <p class="text-muted mb-0">(0274) 123456</p>
+                            <p class="text-muted mb-0"><?= htmlspecialchars($profile->phone); ?></p>
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                         </div>
                         <div>
                             <h6 class="font-weight-bold mb-1">Email</h6>
-                            <p class="text-muted mb-0">info@summitmedical.com</p>
+                            <p class="text-muted mb-0"><?= htmlspecialchars($profile->email); ?></p>
                         </div>
                     </div>
                     

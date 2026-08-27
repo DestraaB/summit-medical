@@ -22,6 +22,27 @@ class Services extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function detail($id = null)
+    {
+        if (empty($id)) {
+            show_404();
+        }
+
+        $service = $this->Service_model->get_by_id($id);
+
+        if (!$service) {
+            show_404();
+        }
+
+        $data['title'] = $service->name . ' - Summit Medical Center';
+        $data['service'] = $service;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');
+        $this->load->view('services/detail', $data);
+        $this->load->view('templates/footer');
+    }
+
     // HALAMAN UNTUK ADMIN
     public function admin_index()
     {

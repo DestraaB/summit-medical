@@ -20,6 +20,16 @@
                             <th width="5%">No</th>
                             <th width="30%">Nama Layanan</th>
                             <th>Deskripsi</th>
+                            <div class="card-body d-flex flex-column">
+                            <div class="text-primary mb-3">
+                                <i class="fas fa-hospital-alt fa-2x" style="color: #0046b8;"></i>
+                            </div>
+                            <h5 class="card-title fw-bold"><?= htmlspecialchars($service->name); ?></h5>
+                            <p class="card-text text-muted mb-4"><?= substr(htmlspecialchars($service->description), 0, 80); ?>...</p>
+                            
+                            <!-- Tambahkan tombol ini -->
+                            <a href="<?= base_url('services/detail/' . $service->id); ?>" class="btn btn-sm btn-outline-primary rounded-pill mt-auto align-self-start" style="border-color: #0046b8; color: #0046b8;">Lihat Detail</a>
+                        </div>
                             <th width="15%">Aksi</th>
                         </tr>
                     </thead>

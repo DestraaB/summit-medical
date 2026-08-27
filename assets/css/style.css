@@ -1,137 +1,117 @@
-/* Desain Hero Section Profesional dengan Gambar Rumah Sakit */
-.hero-professional {
-    background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-    background-size: cover;
-    height: 75vh;
-    min-height: 500px;
-    margin-top: -24px; /* Hapus atau sesuaikan nilai ini jika tampilan nabvar anda tumpang tindih */
-}
-.hero-professional h1 {
-    font-weight: 700;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-}
-.hero-professional p {
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+/* ========================================================
+   ANIMASI DINAMIS & EFEK SMOOTH (PREMIUM FEEL)
+   ======================================================== */
+
+/* 1. Global Smooth Scroll */
+html {
+    scroll-behavior: smooth;
 }
 
-/* Garis bawah pada judul bagian */
-.section-title {
-    position: relative;
-    padding-bottom: 15px;
-    color: #2c3e50;
-    font-weight: 700;
+/* 2. Efek Mengambang (Floating) untuk Gambar Hero */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
 }
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background-color: #0d6efd;
-    border-radius: 2px;
+.hero-floating-img {
+    animation: float 5s ease-in-out infinite;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* Kotak Layanan Unggulan */
-.service-box {
-    transition: all 0.3s ease;
-    border: 1px solid #e9ecef !important;
+/* 3. Animasi Tombol Dinamis (Bouncy & Glow) */
+.btn {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; /* Efek memantul halus */
 }
-.service-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
-    border-color: #0d6efd !important;
+.btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 70, 184, 0.3);
 }
-
-/* Kotak Kartu untuk Dokter dan Artikel */
-.custom-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    background: #fff;
-    border: 1px solid #f8f9fa !important;
-}
-.custom-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
-}
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-
-/* Lingkaran Foto Dokter */
-.doctor-avatar {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    background-color: #f8f9fa;
-    padding: 5px;
-    border: 2px solid #e9ecef;
-}
-
-/* Tanggal Artikel */
-.article-meta {
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-
-.hero-left-box {
-    background-color: #0046b8;
-    border-radius: 20px;
-}
-
-.stats-box {
-    background-color: #0046b8;
-    border-radius: 12px;
-}
-
-.search-doctor-box input {
-    border: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.search-doctor-box input:focus {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    outline: none;
-}
-
 .btn-outline-light:hover {
+    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.4);
     background-color: #ffffff;
     color: #0046b8;
-    font-weight: 500;
 }
 
-/* Efek Hover Garis Bawah pada Navbar */
-.nav-hover-line {
+/* 4. Efek Zoom Sinematik (Ken Burns) pada Gambar Konten */
+.img-zoom-wrapper {
+    overflow: hidden;
+    border-radius: 1.5rem;
+}
+.img-zoom-hover {
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.img-zoom-wrapper:hover .img-zoom-hover {
+    transform: scale(1.1);
+}
+
+/* 5. Kartu Layanan (Blue Card) - Shine & Lift Effect */
+.service-card-blue {
+    background-color: #0046b8;
+    color: white;
+    border-radius: 1.2rem;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 100%;
+    display: block;
     position: relative;
-    color: #333 !important;
-    transition: color 0.3s ease;
+    overflow: hidden;
+    z-index: 1;
+}
+/* Efek kilauan cahaya saat di-hover */
+.service-card-blue::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: 0.7s;
+    z-index: -1;
+}
+.service-card-blue:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 70, 184, 0.4);
+    color: white;
+}
+.service-card-blue:hover::before {
+    animation: shine 0.8s forwards;
+}
+@keyframes shine {
+    100% { left: 200%; }
 }
 
+/* 6. Kotak Statistik Berdenyut */
+.stats-box {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.stats-box:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+/* 7. Efek Mitra/Partner (Grayscale ke Berwarna) */
+.partner-logo {
+    transition: all 0.4s ease;
+    filter: grayscale(100%) opacity(50%);
+    cursor: pointer;
+}
+.partner-logo:hover {
+    filter: grayscale(0%) opacity(100%);
+    transform: scale(1.15);
+}
+
+/* 8. Garis Bawah Navigasi yang Lebih Mulus */
 .nav-hover-line::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
-    bottom: 0;
+    height: 3px;
+    bottom: -3px;
     left: 50%;
     background-color: #0046b8;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     transform: translateX(-50%);
+    border-radius: 2px;
 }
-
-.nav-hover-line:hover {
-    color: #0046b8 !important;
-}
-
 .nav-hover-line:hover::after {
     width: 80%;
-}
-
-/* Penyesuaian Dropdown */
-.dropdown-item:hover {
-    background-color: #f8f9fa;
-    color: #0046b8;
 }

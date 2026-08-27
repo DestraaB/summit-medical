@@ -73,6 +73,13 @@
 
         </a>
 
+        <li class="nav-item">
+    <a class="nav-link" href="<?= base_url('about/admin_index'); ?>">
+        <i class="fas fa-fw fa-info-circle"></i>
+        <span>Kelola About</span>
+    </a>
+</li>
+
 
         <!-- Departments -->
         <a href="#">
