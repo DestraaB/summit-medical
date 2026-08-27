@@ -8,13 +8,14 @@ class Facilities extends CI_Controller
         parent::__construct();
         $this->load->model('Facility_model');
         $this->load->library('session');
+        $this->load->helper('url');
     }
 
-    // HALAMAN UNTUK PENGUNJUNG PUBLIK
+    // HALAMAN PUBLIK: DAFTAR FASILITAS
     public function index()
     {
-        $data['title'] = 'Fasilitas - Summit Medical Center';
-        $data['facilities'] = $this->Facility_model->get_all();
+        $data['title'] = 'Fasilitas Rumah Sakit - Summit Medical Center';
+        $data['facilities'] = $this->Facility_model->get_active();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
@@ -22,7 +23,28 @@ class Facilities extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // HALAMAN UNTUK ADMIN
+    // HALAMAN PUBLIK: DETAIL FASILITAS
+    public function detail($slug = null)
+    {
+        if (empty($slug)) {
+            show_404();
+        }
+
+        $facility = $this->Facility_model->get_by_slug($slug);
+        if (!$facility) {
+            show_404();
+        }
+
+        $data['title'] = $facility->name . ' - Summit Medical Center';
+        $data['facility'] = $facility;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');
+        $this->load->view('facilities/detail', $data);
+        $this->load->view('templates/footer');
+    }
+
+    // HALAMAN ADMIN: TABEL DATA FASILITAS
     public function admin_index()
     {
         if (!$this->session->userdata('logged_in')) {
@@ -39,6 +61,7 @@ class Facilities extends CI_Controller
         $this->load->view('templates/admin/footer', $data);
     }
 
+    // HALAMAN ADMIN: TAMBAH FASILITAS
     public function create()
     {
         if (!$this->session->userdata('logged_in')) {
@@ -46,9 +69,14 @@ class Facilities extends CI_Controller
         }
 
         if ($this->input->method() === 'post') {
+            $name = $this->input->post('name', TRUE);
             $data = [
-                'name' => $this->input->post('name', TRUE),
-                'description' => $this->input->post('description', TRUE)
+                'name' => $name,
+                'slug' => url_title($name, 'dash', TRUE),
+                'short_description' => $this->input->post('short_description', TRUE),
+                'description' => $this->input->post('description', TRUE),
+                'status' => $this->input->post('status', TRUE),
+                'created_at' => date('Y-m-d H:i:s')
             ];
 
             $this->Facility_model->insert($data);
@@ -65,6 +93,7 @@ class Facilities extends CI_Controller
         $this->load->view('templates/admin/footer', $data);
     }
 
+    // HALAMAN ADMIN: EDIT FASILITAS
     public function edit($id)
     {
         if (!$this->session->userdata('logged_in')) {
@@ -77,9 +106,14 @@ class Facilities extends CI_Controller
         }
 
         if ($this->input->method() === 'post') {
+            $name = $this->input->post('name', TRUE);
             $data = [
-                'name' => $this->input->post('name', TRUE),
-                'description' => $this->input->post('description', TRUE)
+                'name' => $name,
+                'slug' => url_title($name, 'dash', TRUE),
+                'short_description' => $this->input->post('short_description', TRUE),
+                'description' => $this->input->post('description', TRUE),
+                'status' => $this->input->post('status', TRUE),
+                'updated_at' => date('Y-m-d H:i:s')
             ];
 
             $this->Facility_model->update($id, $data);
@@ -97,6 +131,7 @@ class Facilities extends CI_Controller
         $this->load->view('templates/admin/footer', $data);
     }
 
+    // HALAMAN ADMIN: HAPUS FASILITAS
     public function delete($id)
     {
         if (!$this->session->userdata('logged_in')) {

@@ -1,34 +1,34 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Facility_model extends CI_Model
-{
-    private $table = 'facilities';
-
-    public function get_all()
-    {
-        return $this->db->order_by('id', 'DESC')->get($this->table)->result();
+class Facility_model extends CI_Model {
+    public function get_all() {
+        return $this->db->get('facilities')->result();
     }
 
-    public function get_by_id($id)
-    {
-        return $this->db->where('id', $id)->get($this->table)->row();
+    public function get_active() {
+        return $this->db->get_where('facilities', ['status' => 1])->result();
     }
 
-    public function insert($data)
-    {
-        return $this->db->insert($this->table, $data);
+    public function get_by_id($id) {
+        return $this->db->get_where('facilities', ['id' => $id])->row();
     }
 
-    public function update($id, $data)
-    {
+    public function get_by_slug($slug) {
+        return $this->db->get_where('facilities', ['slug' => $slug, 'status' => 1])->row();
+    }
+
+    public function insert($data) {
+        return $this->db->insert('facilities', $data);
+    }
+
+    public function update($id, $data) {
         $this->db->where('id', $id);
-        return $this->db->update($this->table, $data);
+        return $this->db->update('facilities', $data);
     }
 
-    public function delete($id)
-    {
+    public function delete($id) {
         $this->db->where('id', $id);
-        return $this->db->delete($this->table);
+        return $this->db->delete('facilities');
     }
 }
