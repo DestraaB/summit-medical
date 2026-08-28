@@ -23,28 +23,39 @@ class About extends CI_Controller {
 
     public function admin_index()
     {
+        // Pengecekan login
         if (!$this->session->userdata('logged_in')) {
             redirect('auth');
         }
 
-        $data['title'] = 'Kelola About & Kontak';
+        $data['title'] = 'Kelola Profil & Kontak';
         $data['profile'] = $this->Profile_model->get_profile();
 
+        // Jika form disubmit
         if ($this->input->method() === 'post') {
+            
+            // Kita sesuaikan nama kolomnya dengan struktur tabel hospital_profile
             $update_data = [
-                'about_text' => $this->input->post('about_text', TRUE),
-                'vision'     => $this->input->post('vision', TRUE),
-                'mission'    => $this->input->post('mission', TRUE),
-                'phone'      => $this->input->post('phone', TRUE),
-                'email'      => $this->input->post('email', TRUE),
-                'address'    => $this->input->post('address', TRUE)
+                'name'        => $this->input->post('name', TRUE), // Opsional jika ingin ganti nama RS
+                'description' => $this->input->post('description', TRUE), // Menggantikan about_text
+                'history'     => $this->input->post('history', TRUE), // Tambahan untuk halaman About
+                'vision'      => $this->input->post('vision', TRUE),
+                'mission'     => $this->input->post('mission', TRUE),
+                'address'     => $this->input->post('address', TRUE),
+                'phone'       => $this->input->post('phone', TRUE),
+                'whatsapp'    => $this->input->post('whatsapp', TRUE),
+                'email'       => $this->input->post('email', TRUE),
+                'google_maps' => $this->input->post('google_maps', TRUE)
             ];
 
-            $this->Profile_model->update_profile($update_data);
-            $this->session->set_flashdata('success', 'Data profil berhasil diperbarui.');
+            // Panggil fungsi update() dari Profile_model
+            $this->Profile_model->update($update_data);
+            
+            $this->session->set_flashdata('success', 'Data profil rumah sakit berhasil diperbarui.');
             redirect('about/admin_index');
         }
 
+        // Tampilan Admin
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('templates/admin/navbar', $data);

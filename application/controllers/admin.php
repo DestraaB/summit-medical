@@ -12,17 +12,18 @@ class Admin extends CI_Controller
         }
     }
 
-        public function index()
-        {
-            $data['title'] = 'Dashboard';
-            $data['user'] = $this->session->userdata();
+    public function index()
+    {
+        $data['title'] = 'Dashboard';
+        $data['user'] = $this->session->userdata();
 
-            $data['total_articles'] = $this->db->count_all('articles');
+        // Mengubah 'articles' menjadi 'news' sesuai dengan tabel database yang baru
+        $data['total_articles'] = $this->db->count_all('news');
 
-            $this->load->view('templates/admin/header', $data);
-            $this->load->view('templates/admin/sidebar', $data);
-            $this->load->view('templates/admin/navbar', $data);
-            $this->load->view('admin/dashboard', $data);
-            $this->load->view('templates/admin/footer', $data);
-        }
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('templates/admin/navbar', $data);
+        $this->load->view('admin/dashboard', $data);
+        $this->load->view('templates/admin/footer', $data);
+    }
 }

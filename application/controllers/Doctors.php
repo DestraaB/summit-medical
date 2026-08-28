@@ -104,9 +104,23 @@ class Doctors extends CI_Controller
             return;
         }
 
+        // Konfigurasi Upload Foto
+        $config['upload_path']   = './uploads/doctors/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 2048;
+
+        $this->load->library('upload', $config);
+
+        $photo = null;
+        if ($this->upload->do_upload('photo')) {
+            $uploadData = $this->upload->data();
+            $photo = $uploadData['file_name'];
+        }
+
         $data = [
             'specialty_id' => $this->input->post('specialty_id', TRUE),
             'name'         => $this->input->post('name', TRUE),
+            'photo'        => $photo,
             'education'    => $this->input->post('education', TRUE),
             'experience'   => $this->input->post('experience', TRUE),
             'description'  => $this->input->post('description', TRUE),
@@ -167,6 +181,24 @@ class Doctors extends CI_Controller
             'updated_at'   => date('Y-m-d H:i:s')
         ];
 
+        // Konfigurasi Upload Foto untuk Update
+        $config['upload_path']   = './uploads/doctors/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 2048;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('photo')) {
+            // Hapus foto lama jika ada
+            $old_doctor = $this->Doctor_model->getDoctorById($id);
+            if (!empty($old_doctor->photo) && file_exists('./uploads/doctors/' . $old_doctor->photo)) {
+                @unlink('./uploads/doctors/' . $old_doctor->photo);
+            }
+
+            $uploadData = $this->upload->data();
+            $data['photo'] = $uploadData['file_name'];
+        }
+
         $this->Doctor_model->updateDoctor($id, $data);
 
         $this->session->set_flashdata('success', 'Data dokter berhasil diupdate.');
@@ -178,6 +210,12 @@ class Doctors extends CI_Controller
     {
         if (!$this->session->userdata('logged_in')) {
             redirect('auth');
+        }
+
+        // Hapus file foto fisik saat data dokter dihapus
+        $doctor = $this->Doctor_model->getDoctorById($id);
+        if (!empty($doctor->photo) && file_exists('./uploads/doctors/' . $doctor->photo)) {
+            @unlink('./uploads/doctors/' . $doctor->photo);
         }
 
         $this->Doctor_model->deleteDoctor($id);

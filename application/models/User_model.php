@@ -9,7 +9,7 @@ class User_model extends CI_Model
     {
         return $this->db
             ->where('email', $email)
-            ->where('is_active', 1)
+            // ->where('is_active', 1) <--- Baris ini sudah dihapus agar tidak error
             ->get($this->table)
             ->row();
     }
@@ -25,5 +25,11 @@ class User_model extends CI_Model
     public function insert($data)
     {
         return $this->db->insert($this->table, $data);
+    }
+    
+    public function update($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update($this->table, $data);
     }
 }

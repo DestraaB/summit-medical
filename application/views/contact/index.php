@@ -59,26 +59,38 @@
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <h4 class="font-weight-bold mb-4 text-dark">Kirim Pesan</h4>
-                    <form action="#" method="POST">
+                    
+                    <!-- Menampilkan alert sukses jika berhasil dikirim -->
+                    <?php if ($this->session->flashdata('success_msg')): ?>
+                        <div class="alert alert-success rounded-pill px-4 text-center">
+                            <i class="fas fa-check-circle me-2"></i> <?= $this->session->flashdata('success_msg'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form action="<?= base_url('contact'); ?>" method="POST">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="name" class="form-label fw-semibold">Nama Lengkap</label>
-                                <input type="text" class="form-control bg-light border-0" id="name" placeholder="Masukkan nama Anda">
+                                <!-- Tambahkan name="name" -->
+                                <input type="text" class="form-control bg-light border-0" id="name" name="name" placeholder="Masukkan nama Anda" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label fw-semibold">Alamat Email</label>
-                                <input type="email" class="form-control bg-light border-0" id="email" placeholder="nama@email.com">
+                                <!-- Tambahkan name="email" -->
+                                <input type="email" class="form-control bg-light border-0" id="email" name="email" placeholder="nama@email.com" required>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="subject" class="form-label fw-semibold">Subjek</label>
-                            <input type="text" class="form-control bg-light border-0" id="subject" placeholder="Topik pesan">
+                            <!-- Tambahkan name="subject" -->
+                            <input type="text" class="form-control bg-light border-0" id="subject" name="subject" placeholder="Topik pesan" required>
                         </div>
                         <div class="mb-4">
                             <label for="message" class="form-label fw-semibold">Pesan</label>
-                            <textarea class="form-control bg-light border-0" id="message" rows="5" placeholder="Tulis pesan Anda di sini..."></textarea>
+                            <!-- Tambahkan name="message" -->
+                            <textarea class="form-control bg-light border-0" id="message" name="message" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
                         </div>
-                        <button type="button" class="btn btn-primary px-4 rounded-pill">Kirim Pesan <i class="fas fa-paper-plane ms-2"></i></button>
+                        <button type="submit" class="btn btn-primary px-4 rounded-pill">Kirim Pesan <i class="fas fa-paper-plane ms-2"></i></button>
                     </form>
                 </div>
             </div>

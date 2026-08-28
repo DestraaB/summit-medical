@@ -1,8 +1,13 @@
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-4 mb-4 text-center">
-            <img src="https://ui-avatars.com/api/?name=<?= urlencode($doctor->name); ?>&background=random&color=fff&size=250" alt="Foto <?= htmlspecialchars($doctor->name); ?>" class="img-fluid rounded-circle shadow-sm mb-3 doctor-avatar" style="width: 250px; height: 250px;">
+            <?php if (!empty($doctor->photo)) : ?>
+                <img src="<?= base_url('uploads/doctors/' . $doctor->photo); ?>" alt="Foto <?= htmlspecialchars($doctor->name); ?>" class="img-fluid rounded-circle shadow-sm mb-3 doctor-avatar" style="width: 250px; height: 250px; object-fit: cover;">
+            <?php else : ?>
+                <img src="https://ui-avatars.com/api/?name=<?= urlencode($doctor->name); ?>&background=random&color=fff&size=250" alt="Foto <?= htmlspecialchars($doctor->name); ?>" class="img-fluid rounded-circle shadow-sm mb-3 doctor-avatar" style="width: 250px; height: 250px;">
+            <?php endif; ?>
         </div>
+        
         <div class="col-md-8">
             <h2 class="text-primary" style="font-weight: 700;"><?= htmlspecialchars($doctor->name); ?></h2>
             <h5 class="text-secondary mb-4">
