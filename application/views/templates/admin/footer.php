@@ -1,63 +1,66 @@
-    </div>
-    <!-- End main-content -->
+</main>
+<!-- End Admin Main -->
 
-</div>
-<!-- End admin-wrapper -->
 
-</div>
-            <!-- End of Main Content -->
+<!-- =========================
+     ADMIN FOOTER
+     ========================= -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Summit Medical Center <?= date('Y'); ?></span>
-                    </div>
+<footer class="admin-footer">
+
+    <div class="container-fluid px-3 px-lg-4">
+
+        <div class="admin-footer-content">
+
+            <div class="admin-footer-brand">
+
+                <div class="admin-footer-logo">
+                    <i class="fas fa-hospital"></i>
                 </div>
-            </footer>
-            <!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+                <div>
 
-    </div>
-    <!-- End of Page Wrapper -->
+                    <strong>
+                        Summit Medical Center
+                    </strong>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+                    <span>
+                        Administration Panel
+                    </span>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Yakin ingin keluar?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
                 </div>
-                <div class="modal-body">Pilih "Logout" di bawah ini jika Anda siap untuk mengakhiri sesi Anda saat ini.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <!-- Pastikan ini mengarah ke controller Auth/logout -->
-                    <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-                </div>
+
             </div>
+
+
+            <div class="admin-footer-copy">
+
+                &copy;
+                <?= date('Y'); ?>
+                Summit Medical Center.
+
+                <span>
+                    All rights reserved.
+                </span>
+
+            </div>
+
         </div>
+
     </div>
 
-    <!-- SCRIPT WAJIB UNTUK MEMPERBAIKI TOMBOL ERROR -->
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Bootstrap bundle js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <!-- Custom scripts for all pages -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/js/sb-admin-2.min.js"></script>
+</footer>
+
+
+</div>
+<!-- End Admin App -->
+
+
+<!-- Bootstrap 5 -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+
 
 </body>
 </html>

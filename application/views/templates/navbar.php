@@ -229,9 +229,32 @@
 
                         </li>
 
+                         <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="<?= base_url('auth'); ?>">
+
+                                <span class="dropdown-icon">
+                                    <i class="fas fa-user-lock me-1"></i>
+                                </span>
+
+                                <span>
+                                    login Admin
+                                </span>
+
+                            </a>
+
+                        </li>
+                        
+
                     </ul>
+                    
 
                 </li>
+                <!-- SYSTEM LOGIN -->
+
+
 
 
                 <!-- =========================

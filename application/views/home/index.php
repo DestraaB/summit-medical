@@ -45,7 +45,7 @@
                 Kami hadir memberikan pelayanan kesehatan yang profesional,
                 aman, nyaman, dan berorientasi pada kebutuhan setiap pasien.
             </p>
-
+    
 
             <!-- HERO BUTTON -->
             <div class="d-flex flex-wrap gap-2">
@@ -867,21 +867,6 @@
             </p>
 
         </div>
-
-
-        <div class="col-lg-4 text-lg-end"
-             data-aos="fade-left">
-
-            <a href="<?= base_url('doctors'); ?>"
-               class="btn btn-light rounded-pill px-4 py-3 fw-bold">
-
-                <i class="fas fa-search me-2"></i>
-                Cari Dokter
-
-            </a>
-
-        </div>
-
     </div>
 
 </section>

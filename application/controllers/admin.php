@@ -21,7 +21,6 @@ class Admin extends CI_Controller
         $data['total_articles'] = $this->db->count_all('news');
 
         $this->load->view('templates/admin/header', $data);
-        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('templates/admin/navbar', $data);
         $this->load->view('admin/dashboard', $data);
         $this->load->view('templates/admin/footer', $data);

@@ -1,96 +1,545 @@
-<div class="container-fluid">
+<div class="dashboard-page">
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-    </div>
+    <!-- =========================
+         WELCOME HEADER
+         ========================= -->
 
-    <!-- Content Row -->
-    <div class="row">
+    <section class="dashboard-header">
 
-        <!-- Total Berita Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Berita</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?= isset($total_articles) ? $total_articles : 0; ?>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-newspaper fa-2x text-gray-300"></i>
-                        </div>
+        <div>
+
+            <span class="dashboard-eyebrow">
+                <i class="fas fa-sparkles"></i>
+                ADMINISTRATION
+            </span>
+
+            <h1>
+                Selamat datang kembali,
+                <span>
+                    <?= isset($user['name']) && !empty($user['name'])
+                        ? htmlspecialchars($user['name'])
+                        : 'Admin'; ?>
+                </span>
+            </h1>
+
+            <p>
+                Kelola informasi dan konten Summit Medical Center
+                dari satu tempat.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-date">
+
+            <div class="date-icon">
+                <i class="far fa-calendar"></i>
+            </div>
+
+            <div>
+
+                <span>
+                    Hari ini
+                </span>
+
+                <strong>
+                    <?= date('d F Y'); ?>
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HERO DASHBOARD
+         ========================= -->
+
+    <section class="dashboard-hero">
+
+        <div class="dashboard-hero-content">
+
+            <span class="hero-label">
+                SUMMIT MEDICAL CENTER
+            </span>
+
+            <h2>
+                Kelola website rumah sakit
+                <br>
+                dengan lebih mudah.
+            </h2>
+
+            <p>
+                Perbarui informasi dokter, layanan kesehatan,
+                fasilitas, artikel, dan informasi rumah sakit
+                melalui panel administrasi ini.
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="<?= base_url('news/admin_index'); ?>"
+                    class="hero-primary-button"
+                >
+                    <i class="fas fa-newspaper"></i>
+                    Kelola Konten
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+                <a
+                    href="<?= base_url(); ?>"
+                    target="_blank"
+                    class="hero-secondary-button"
+                >
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                    Lihat Website
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-hero-decoration">
+
+            <div class="hero-circle circle-one"></div>
+            <div class="hero-circle circle-two"></div>
+
+            <div class="hero-medical-icon">
+                <i class="fas fa-heart-pulse"></i>
+            </div>
+
+            <div class="hero-plus plus-one">
+                +
+            </div>
+
+            <div class="hero-plus plus-two">
+                +
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         OVERVIEW
+         ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span>
+                    OVERVIEW
+                </span>
+
+                <h2>
+                    Website Overview
+                </h2>
+
+            </div>
+
+            <p>
+                Ringkasan pengelolaan website
+                Summit Medical Center.
+            </p>
+
+        </div>
+
+
+        <div class="overview-grid">
+
+
+            <!-- ARTICLES -->
+
+            <a
+                href="<?= base_url('news/admin_index'); ?>"
+                class="overview-item"
+            >
+
+                <div class="overview-icon article-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+
+                <div class="overview-content">
+
+                    <span>
+                        ARTICLES
+                    </span>
+
+                    <strong>
+                        <?= isset($total_articles)
+                            ? $total_articles
+                            : 0; ?>
+                    </strong>
+
+                    <small>
+                        Artikel tersedia
+                    </small>
+
+                </div>
+
+                <div class="overview-arrow">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
+
+            </a>
+
+
+            <!-- DOCTORS -->
+
+            <a
+                href="<?= base_url('doctors/admin_index'); ?>"
+                class="overview-item"
+            >
+
+                <div class="overview-icon doctor-icon">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+
+                <div class="overview-content">
+
+                    <span>
+                        DOCTORS
+                    </span>
+
+                    <strong class="overview-action">
+                        Kelola
+                    </strong>
+
+                    <small>
+                        Profil dokter
+                    </small>
+
+                </div>
+
+                <div class="overview-arrow">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
+
+            </a>
+
+
+            <!-- SERVICES -->
+
+            <a
+                href="<?= base_url('services/admin_index'); ?>"
+                class="overview-item"
+            >
+
+                <div class="overview-icon service-icon">
+                    <i class="fas fa-notes-medical"></i>
+                </div>
+
+                <div class="overview-content">
+
+                    <span>
+                        SERVICES
+                    </span>
+
+                    <strong class="overview-action">
+                        Kelola
+                    </strong>
+
+                    <small>
+                        Layanan kesehatan
+                    </small>
+
+                </div>
+
+                <div class="overview-arrow">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
+
+            </a>
+
+
+            <!-- FACILITIES -->
+
+            <a
+                href="<?= base_url('facilities/admin_index'); ?>"
+                class="overview-item"
+            >
+
+                <div class="overview-icon facility-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+
+                <div class="overview-content">
+
+                    <span>
+                        FACILITIES
+                    </span>
+
+                    <strong class="overview-action">
+                        Kelola
+                    </strong>
+
+                    <small>
+                        Fasilitas rumah sakit
+                    </small>
+
+                </div>
+
+                <div class="overview-arrow">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MANAGEMENT AREA
+         ========================= -->
+
+    <section class="dashboard-management">
+
+        <!-- CONTENT MANAGEMENT -->
+
+        <div class="management-card">
+
+            <div class="management-card-header">
+
+                <div>
+
+                    <span>
+                        CONTENT
+                    </span>
+
+                    <h3>
+                        Content Management
+                    </h3>
+
+                </div>
+
+                <div class="management-header-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+
+            </div>
+
+
+            <p class="management-description">
+                Kelola seluruh konten yang ditampilkan
+                pada website publik Summit Medical Center.
+            </p>
+
+
+            <div class="management-links">
+
+                <a
+                    href="<?= base_url('news/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-newspaper"></i>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Total Layanan Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Kelola Layanan</div>
-                            <div class="mb-0 text-gray-800" style="font-size: 13px;">Kelola poliklinik & layanan RS</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-stethoscope fa-2x text-gray-300"></i>
-                        </div>
+                    <div>
+                        <strong>Articles</strong>
+                        <small>Berita & informasi</small>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Tim Dokter Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tim Dokter</div>
-                            <div class="mb-0 text-gray-800" style="font-size: 13px;">Cek jadwal & profil dokter</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-md fa-2x text-gray-300"></i>
-                        </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+
+                <a
+                    href="<?= base_url('doctors/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-user-doctor"></i>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Pesan Masuk Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pesan Publik</div>
-                            <div class="mb-0 text-gray-800" style="font-size: 13px;">Pantau kritik dan saran</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
+                    <div>
+                        <strong>Doctors</strong>
+                        <small>Profil tenaga medis</small>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Teks Sambutan -->
-    <div class="row mt-4">
-        <div class="col-lg-12">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Selamat Datang di Panel Admin!</h6>
-                </div>
-                <div class="card-body">
-                    <p>Melalui halaman ini, Anda dapat mengelola seluruh konten pada website publik Summit Medical Center. Gunakan navigasi di sebelah kiri untuk menambah berita, mengelola daftar dokter, atau melihat pesan masuk dari pengunjung.</p>
-                </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+
+                <a
+                    href="<?= base_url('specialties/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+
+                    <div>
+                        <strong>Specialties</strong>
+                        <small>Spesialisasi dokter</small>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+
+                <a
+                    href="<?= base_url('schedule/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-calendar-days"></i>
+                    </div>
+
+                    <div>
+                        <strong>Schedule</strong>
+                        <small>Jadwal dokter</small>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
             </div>
+
         </div>
-    </div>
+
+
+        <!-- WEBSITE INFORMATION -->
+
+        <div class="management-card">
+
+            <div class="management-card-header">
+
+                <div>
+
+                    <span>
+                        INFORMATION
+                    </span>
+
+                    <h3>
+                        Website Information
+                    </h3>
+
+                </div>
+
+                <div class="management-header-icon">
+                    <i class="fas fa-circle-info"></i>
+                </div>
+
+            </div>
+
+
+            <p class="management-description">
+                Atur informasi utama rumah sakit yang
+                ditampilkan kepada pengunjung website.
+            </p>
+
+
+            <div class="management-links">
+
+                <a
+                    href="<?= base_url('services/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-notes-medical"></i>
+                    </div>
+
+                    <div>
+                        <strong>Services</strong>
+                        <small>Layanan kesehatan</small>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+
+                <a
+                    href="<?= base_url('facilities/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+
+                    <div>
+                        <strong>Facilities</strong>
+                        <small>Fasilitas rumah sakit</small>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+
+                <a
+                    href="<?= base_url('about/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+
+                    <div>
+                        <strong>About</strong>
+                        <small>Profil rumah sakit</small>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+
+                <a
+                    href="<?= base_url('contact/admin_index'); ?>"
+                >
+                    <div class="management-link-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+
+                    <div>
+                        <strong>Contact</strong>
+                        <small>Pesan pengunjung</small>
+                    </div>
+
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOTTOM MESSAGE
+         ========================= -->
+
+    <section class="dashboard-bottom">
+
+        <div class="bottom-icon">
+            <i class="fas fa-shield-heart"></i>
+        </div>
+
+        <div>
+
+            <strong>
+                Summit Medical Center
+            </strong>
+
+            <p>
+                Pastikan informasi yang ditampilkan
+                kepada pasien selalu akurat dan terbaru.
+            </p>
+
+        </div>
+
+        <a
+            href="<?= base_url(); ?>"
+            target="_blank"
+        >
+            Buka Website
+            <i class="fas fa-arrow-right"></i>
+        </a>
+
+    </section>
 
 </div>

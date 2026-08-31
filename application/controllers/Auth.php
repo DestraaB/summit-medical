@@ -114,4 +114,21 @@ class Auth extends CI_Controller
         // Kembali ke login
         redirect('auth');
     }
+    public function bikin_admin()
+    {
+        // Data akun admin baru
+        $data = [
+            'name'     => 'Super Admin',
+            'email'    => 'admin@summit.com',
+            'password' => password_hash('admin123', PASSWORD_DEFAULT) // Password dienkripsi otomatis
+        ];
+
+        // Masukkan ke tabel users
+        $this->db->insert('users', $data);
+        
+        echo "<h3>Akun admin baru berhasil dibuat!</h3>";
+        echo "Email: <b>admin@summit.com</b><br>";
+        echo "Password: <b>admin123</b><br><br>";
+        echo "<a href='".base_url('auth')."'>Klik di sini untuk Login</a>";
+    }
 }

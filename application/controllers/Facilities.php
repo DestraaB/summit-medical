@@ -8,14 +8,18 @@ class Facilities extends CI_Controller
         parent::__construct();
         $this->load->model('Facility_model');
         $this->load->library('session');
+        $this->load->library('form_validation');
         $this->load->helper('url');
+        $this->load->helper('text'); // Untuk slug
     }
 
-    // HALAMAN PUBLIK: DAFTAR FASILITAS
+    // =========================================
+    // HAK AKSES: PUBLIC (PENGUNJUNG)
+    // =========================================
     public function index()
     {
-        $data['title'] = 'Fasilitas Rumah Sakit - Summit Medical Center';
-        $data['facilities'] = $this->Facility_model->get_active();
+        $data['title'] = 'Fasilitas Kami';
+        $data['facilities'] = $this->Facility_model->getAll();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
@@ -23,20 +27,12 @@ class Facilities extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // HALAMAN PUBLIK: DETAIL FASILITAS
-    public function detail($slug = null)
+    public function detail($slug)
     {
-        if (empty($slug)) {
-            show_404();
-        }
+        $data['facility'] = $this->Facility_model->getBySlug($slug);
+        if (!$data['facility']) show_404();
 
-        $facility = $this->Facility_model->get_by_slug($slug);
-        if (!$facility) {
-            show_404();
-        }
-
-        $data['title'] = $facility->name . ' - Summit Medical Center';
-        $data['facility'] = $facility;
+        $data['title'] = $data['facility']->name;
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
@@ -44,15 +40,15 @@ class Facilities extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // HALAMAN ADMIN: TABEL DATA FASILITAS
+    // =========================================
+    // HAK AKSES: ADMIN (PENGELOLA)
+    // =========================================
     public function admin_index()
     {
-        if (!$this->session->userdata('logged_in')) {
-            redirect('auth');
-        }
+        if (!$this->session->userdata('logged_in')) redirect('auth');
 
         $data['title'] = 'Data Fasilitas';
-        $data['facilities'] = $this->Facility_model->get_all();
+        $data['facilities'] = $this->Facility_model->getAll();
 
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
@@ -61,28 +57,9 @@ class Facilities extends CI_Controller
         $this->load->view('templates/admin/footer', $data);
     }
 
-    // HALAMAN ADMIN: TAMBAH FASILITAS
     public function create()
     {
-        if (!$this->session->userdata('logged_in')) {
-            redirect('auth');
-        }
-
-        if ($this->input->method() === 'post') {
-            $name = $this->input->post('name', TRUE);
-            $data = [
-                'name' => $name,
-                'slug' => url_title($name, 'dash', TRUE),
-                'short_description' => $this->input->post('short_description', TRUE),
-                'description' => $this->input->post('description', TRUE),
-                'status' => $this->input->post('status', TRUE),
-                'created_at' => date('Y-m-d H:i:s')
-            ];
-
-            $this->Facility_model->insert($data);
-            $this->session->set_flashdata('success', 'Fasilitas berhasil ditambahkan.');
-            redirect('facilities/admin_index');
-        }
+        if (!$this->session->userdata('logged_in')) redirect('auth');
 
         $data['title'] = 'Tambah Fasilitas';
 
@@ -93,36 +70,57 @@ class Facilities extends CI_Controller
         $this->load->view('templates/admin/footer', $data);
     }
 
-    // HALAMAN ADMIN: EDIT FASILITAS
+    public function store()
+    {
+        if (!$this->session->userdata('logged_in')) redirect('auth');
+
+        $this->form_validation->set_rules('name', 'Nama Fasilitas', 'required|trim');
+        $this->form_validation->set_rules('short_description', 'Deskripsi Singkat', 'required|trim');
+        $this->form_validation->set_rules('description', 'Deskripsi Lengkap', 'required|trim');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+            return;
+        }
+
+        // Generate Slug dari Nama Fasilitas
+        $slug = url_title($this->input->post('name', TRUE), 'dash', TRUE);
+
+        // Upload Gambar
+        $config['upload_path']   = './uploads/facilities/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 2048;
+        $this->load->library('upload', $config);
+
+        $image = null;
+        if ($this->upload->do_upload('image')) {
+            $uploadData = $this->upload->data();
+            $image = $uploadData['file_name'];
+        }
+
+        $data = [
+            'name'              => $this->input->post('name', TRUE),
+            'slug'              => $slug,
+            'image'             => $image,
+            'short_description' => $this->input->post('short_description', TRUE),
+            'description'       => $this->input->post('description', TRUE),
+            'status'            => $this->input->post('status', TRUE),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ];
+
+        $this->Facility_model->insert($data);
+        $this->session->set_flashdata('success', 'Data fasilitas berhasil ditambahkan.');
+        redirect('facilities/admin_index');
+    }
+
     public function edit($id)
     {
-        if (!$this->session->userdata('logged_in')) {
-            redirect('auth');
-        }
-
-        $facility = $this->Facility_model->get_by_id($id);
-        if (!$facility) {
-            show_404();
-        }
-
-        if ($this->input->method() === 'post') {
-            $name = $this->input->post('name', TRUE);
-            $data = [
-                'name' => $name,
-                'slug' => url_title($name, 'dash', TRUE),
-                'short_description' => $this->input->post('short_description', TRUE),
-                'description' => $this->input->post('description', TRUE),
-                'status' => $this->input->post('status', TRUE),
-                'updated_at' => date('Y-m-d H:i:s')
-            ];
-
-            $this->Facility_model->update($id, $data);
-            $this->session->set_flashdata('success', 'Fasilitas berhasil diperbarui.');
-            redirect('facilities/admin_index');
-        }
+        if (!$this->session->userdata('logged_in')) redirect('auth');
 
         $data['title'] = 'Edit Fasilitas';
-        $data['facility'] = $facility;
+        $data['facility'] = $this->Facility_model->getById($id);
 
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
@@ -131,20 +129,62 @@ class Facilities extends CI_Controller
         $this->load->view('templates/admin/footer', $data);
     }
 
-    // HALAMAN ADMIN: HAPUS FASILITAS
-    public function delete($id)
+    public function update($id)
     {
-        if (!$this->session->userdata('logged_in')) {
-            redirect('auth');
+        if (!$this->session->userdata('logged_in')) redirect('auth');
+
+        $this->form_validation->set_rules('name', 'Nama Fasilitas', 'required|trim');
+        $this->form_validation->set_rules('short_description', 'Deskripsi Singkat', 'required|trim');
+        $this->form_validation->set_rules('description', 'Deskripsi Lengkap', 'required|trim');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit($id);
+            return;
         }
 
-        $facility = $this->Facility_model->get_by_id($id);
-        if (!$facility) {
-            show_404();
+        $slug = url_title($this->input->post('name', TRUE), 'dash', TRUE);
+
+        $data = [
+            'name'              => $this->input->post('name', TRUE),
+            'slug'              => $slug,
+            'short_description' => $this->input->post('short_description', TRUE),
+            'description'       => $this->input->post('description', TRUE),
+            'status'            => $this->input->post('status', TRUE),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ];
+
+        // Cek jika ada upload gambar baru
+        $config['upload_path']   = './uploads/facilities/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size']      = 2048;
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            $old_facility = $this->Facility_model->getById($id);
+            if (!empty($old_facility->image) && file_exists('./uploads/facilities/' . $old_facility->image)) {
+                @unlink('./uploads/facilities/' . $old_facility->image);
+            }
+            $uploadData = $this->upload->data();
+            $data['image'] = $uploadData['file_name'];
+        }
+
+        $this->Facility_model->update($id, $data);
+        $this->session->set_flashdata('success', 'Data fasilitas berhasil diupdate.');
+        redirect('facilities/admin_index');
+    }
+
+    public function delete($id)
+    {
+        if (!$this->session->userdata('logged_in')) redirect('auth');
+
+        $facility = $this->Facility_model->getById($id);
+        if (!empty($facility->image) && file_exists('./uploads/facilities/' . $facility->image)) {
+            @unlink('./uploads/facilities/' . $facility->image);
         }
 
         $this->Facility_model->delete($id);
-        $this->session->set_flashdata('success', 'Fasilitas berhasil dihapus.');
+        $this->session->set_flashdata('success', 'Data fasilitas berhasil dihapus.');
         redirect('facilities/admin_index');
     }
 }
