@@ -1,48 +1,261 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
+
+<!-- =========================================================
+     SUMMIT MEDICAL CENTER
+     PUBLIC NAVBAR
+     ========================================================= -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top site-navbar">
+
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center font-weight-bold text-primary" href="<?= base_url(); ?>">
-            <i class="fas fa-hospital-symbol fa-2x me-2"></i>
-            <div>
-                <span class="d-block text-dark" style="font-size: 1.2rem; font-weight: 800; line-height: 1;">SUMMIT MEDICAL</span>
-                <span class="d-block text-primary" style="font-size: 0.75rem; letter-spacing: 1px;">CENTER</span>
+
+        <!-- =========================
+             LOGO
+             ========================= -->
+        <a class="navbar-brand d-flex align-items-center"
+           href="<?= base_url(); ?>">
+
+            <div class="brand-icon me-2">
+
+                <i class="fas fa-heartbeat"></i>
+
             </div>
+
+            <div class="brand-text">
+
+                <span class="brand-title">
+                    SUMMIT MEDICAL
+                </span>
+
+                <span class="brand-subtitle">
+                    CENTER
+                </span>
+
+            </div>
+
         </a>
 
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+        <!-- =========================
+             MOBILE TOGGLE
+             ========================= -->
+        <button
+            class="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
             <span class="navbar-toggler-icon"></span>
+
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto fw-semibold align-items-lg-center">
-                
-                <!-- INFORMASI -->
-                <li class="nav-item mx-1"><a class="nav-link <?= ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'home') ? 'active text-primary' : ''; ?>" href="<?= base_url(); ?>">Home</a></li>
-                <li class="nav-item mx-1"><a class="nav-link <?= ($this->uri->segment(1) == 'about') ? 'active text-primary' : ''; ?>" href="<?= base_url('about'); ?>">About</a></li>
-                <li class="nav-item mx-1"><a class="nav-link <?= ($this->uri->segment(1) == 'services') ? 'active text-primary' : ''; ?>" href="<?= base_url('services'); ?>">Services</a></li>
-                <li class="nav-item mx-1"><a class="nav-link <?= ($this->uri->segment(1) == 'schedule') ? 'active text-primary' : ''; ?>" href="<?= base_url('schedule'); ?>">Schedule</a></li>
-                <li class="nav-item mx-1"><a class="nav-link <?= ($this->uri->segment(1) == 'contact') ? 'active text-primary' : ''; ?>" href="<?= base_url('contact'); ?>">Contact</a></li>
 
-                <!-- KONTEN (Dropdown) -->
-                <li class="nav-item dropdown mx-1">
-                    <a class="nav-link dropdown-toggle <?= in_array($this->uri->segment(1), ['news', 'doctors', 'facilities', 'specialties']) ? 'active text-primary' : ''; ?>" href="#" id="kontenDropdown" role="button" data-bs-toggle="dropdown">
+        <!-- =========================
+             NAVIGATION
+             ========================= -->
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+
+                <!-- HOME -->
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link <?= ($this->uri->segment(1) == '' || $this->uri->segment(1) == 'home') ? 'active' : ''; ?>"
+                        href="<?= base_url(); ?>">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <!-- ABOUT -->
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link <?= ($this->uri->segment(1) == 'about') ? 'active' : ''; ?>"
+                        href="<?= base_url('about'); ?>">
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <!-- SERVICES -->
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link <?= ($this->uri->segment(1) == 'services') ? 'active' : ''; ?>"
+                        href="<?= base_url('services'); ?>">
+
+                        Services
+
+                    </a>
+
+                </li>
+
+
+                <!-- SCHEDULE -->
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link <?= ($this->uri->segment(1) == 'schedule') ? 'active' : ''; ?>"
+                        href="<?= base_url('schedule'); ?>">
+
+                        Schedule
+
+                    </a>
+
+                </li>
+
+
+                <!-- CONTACT -->
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link <?= ($this->uri->segment(1) == 'contact') ? 'active' : ''; ?>"
+                        href="<?= base_url('contact'); ?>">
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+
+                <!-- =========================
+                     KONTEN
+                     ========================= -->
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle <?= in_array($this->uri->segment(1), ['news', 'doctors', 'facilities', 'specialties']) ? 'active' : ''; ?>"
+                        href="#"
+                        id="kontenDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+
                         Konten
+
                     </a>
-                    <ul class="dropdown-menu border-0 shadow-sm mt-2">
-                        <li><a class="dropdown-item py-2" href="<?= base_url('news'); ?>"><i class="fas fa-newspaper me-2 text-muted"></i> Articles</a></li>
-                        <li><a class="dropdown-item py-2" href="<?= base_url('doctors'); ?>"><i class="fas fa-user-md me-2 text-muted"></i> Doctors</a></li>
-                        <li><a class="dropdown-item py-2" href="<?= base_url('specialties'); ?>"><i class="fas fa-stethoscope me-2 text-muted"></i> Specialties</a></li>
-                        <li><a class="dropdown-item py-2" href="<?= base_url('facilities'); ?>"><i class="fas fa-building me-2 text-muted"></i> Facilities</a></li>
+
+
+                    <ul
+                        class="dropdown-menu border-0 shadow"
+                        aria-labelledby="kontenDropdown">
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="<?= base_url('news'); ?>">
+
+                                <span class="dropdown-icon">
+                                    <i class="fas fa-newspaper"></i>
+                                </span>
+
+                                <span>
+                                    Articles
+                                </span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="<?= base_url('doctors'); ?>">
+
+                                <span class="dropdown-icon">
+                                    <i class="fas fa-user-md"></i>
+                                </span>
+
+                                <span>
+                                    Doctors
+                                </span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="<?= base_url('specialties'); ?>">
+
+                                <span class="dropdown-icon">
+                                    <i class="fas fa-stethoscope"></i>
+                                </span>
+
+                                <span>
+                                    Specialties
+                                </span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="<?= base_url('facilities'); ?>">
+
+                                <span class="dropdown-icon">
+                                    <i class="fas fa-hospital"></i>
+                                </span>
+
+                                <span>
+                                    Facilities
+                                </span>
+
+                            </a>
+
+                        </li>
+
                     </ul>
+
                 </li>
 
-                <!-- SYSTEM LOGIN -->
+
+                <!-- =========================
+                     CONTACT CTA
+                     ========================= -->
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                    <a href="<?= base_url('auth'); ?>" class="btn btn-primary rounded-pill px-4 shadow-sm">
-                        <i class="fas fa-user-lock me-1"></i> Login Admin
+
+                    <a
+                        href="<?= base_url('contact'); ?>"
+                        class="navbar-cta">
+
+                        <i class="fas fa-calendar-check me-2"></i>
+
+                        Buat Janji
+
                     </a>
+
                 </li>
-                
+
             </ul>
+
         </div>
+
     </div>
+
 </nav>
+

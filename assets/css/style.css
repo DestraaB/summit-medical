@@ -1,117 +1,827 @@
-/* ========================================================
-   ANIMASI DINAMIS & EFEK SMOOTH (PREMIUM FEEL)
-   ======================================================== */
+/* =========================================================
+   SUMMIT MEDICAL CENTER
+   MAIN STYLESHEET
+   ========================================================= */
 
-/* 1. Global Smooth Scroll */
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+:root {
+    --primary: #0046b8;
+    --primary-dark: #00358f;
+    --primary-light: #eaf2ff;
+
+    --text-dark: #102a43;
+    --text-muted: #64748b;
+
+    --bg-light: #f7f9fc;
+    --border: #e8edf4;
+
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 25px;
+
+    --shadow-sm: 0 5px 20px rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
 html {
     scroll-behavior: smooth;
 }
 
-/* 2. Efek Mengambang (Floating) untuk Gambar Hero */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: #ffffff;
+
+    color: var(--text-dark);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    overflow-x: hidden;
 }
+
+.site-main {
+    min-height: 60vh;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+    transition: all 0.3s ease;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.btn {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    box-shadow: 0 10px 25px rgba(0, 70, 184, 0.25);
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.site-navbar {
+    min-height: 78px;
+
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+
+    box-shadow:
+        0 4px 20px rgba(15, 23, 42, 0.04);
+
+    z-index: 1000;
+}
+
+
+/* Brand */
+
+.navbar-brand {
+    color: var(--text-dark) !important;
+
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: translateY(-1px);
+}
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background-color: var(--primary);
+
+    color: white;
+
+    font-size: 1.25rem;
+
+    box-shadow:
+        0 8px 20px rgba(0, 70, 184, 0.2);
+}
+
+.brand-text {
+    line-height: 1;
+}
+
+.brand-title {
+    display: block;
+
+    color: var(--text-dark);
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+}
+
+.brand-subtitle {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--primary);
+
+    font-size: 0.68rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+/* Navbar menu */
+
+.site-navbar .nav-item {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.site-navbar .nav-link {
+    position: relative;
+
+    padding: 0.65rem 0.85rem !important;
+
+    color: #475569 !important;
+
+    font-size: 0.94rem;
+
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.site-navbar .nav-link:hover {
+    color: var(--primary) !important;
+
+    background-color: var(--primary-light);
+}
+
+.site-navbar .nav-link.active {
+    color: var(--primary) !important;
+}
+
+.site-navbar .nav-link.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 2px;
+
+    width: 22px;
+    height: 3px;
+
+    background-color: var(--primary);
+
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+}
+
+
+/* Dropdown */
+
+.site-navbar .dropdown-menu {
+    min-width: 220px;
+
+    margin-top: 12px !important;
+
+    padding: 8px;
+
+    border-radius: 16px;
+
+    border: 1px solid var(--border) !important;
+
+    box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.1);
+}
+
+.site-navbar .dropdown-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px 12px;
+
+    border-radius: 10px;
+
+    color: #475569;
+
+    font-size: 0.9rem;
+
+    font-weight: 500;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.site-navbar .dropdown-item:hover {
+    background-color: var(--primary-light);
+
+    color: var(--primary);
+}
+
+.dropdown-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background-color: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 0.8rem;
+}
+
+
+/* CTA */
+
+.navbar-cta {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 11px 20px;
+
+    color: white !important;
+
+    background-color: var(--primary);
+
+    border-radius: 50px;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 7px 18px rgba(0, 70, 184, 0.2);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.navbar-cta:hover {
+    color: white !important;
+
+    background-color: var(--primary-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 70, 184, 0.3);
+}
+
+
+/* =========================================================
+   HOME - HERO
+   ========================================================= */
+
 .hero-floating-img {
     animation: float 5s ease-in-out infinite;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+
+    box-shadow:
+        0 25px 50px rgba(15, 23, 42, 0.15);
 }
 
-/* 3. Animasi Tombol Dinamis (Bouncy & Glow) */
-.btn {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; /* Efek memantul halus */
-}
-.btn:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 12px 24px rgba(0, 70, 184, 0.3);
-}
-.btn-outline-light:hover {
-    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.4);
-    background-color: #ffffff;
-    color: #0046b8;
+@keyframes float {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
 }
 
-/* 4. Efek Zoom Sinematik (Ken Burns) pada Gambar Konten */
+
+/* =========================================================
+   HOME - SERVICE CARD
+   ========================================================= */
+
+.service-card-blue {
+    height: 100%;
+
+    padding: 28px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: block;
+
+    color: white;
+
+    background-color: var(--primary);
+
+    border-radius: 20px;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.service-card-blue:hover {
+    color: white;
+
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 20px 40px rgba(0, 70, 184, 0.25);
+}
+
+.service-card-blue::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -80px;
+    right: -70px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+}
+
+.service-icon-wrapper {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    border-radius: 15px;
+
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
 .img-zoom-wrapper {
     overflow: hidden;
-    border-radius: 1.5rem;
+
+    border-radius: var(--radius-lg);
 }
+
+.img-zoom-wrapper img,
 .img-zoom-hover {
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition:
+        transform 0.7s ease;
 }
+
+.img-zoom-wrapper:hover img,
 .img-zoom-wrapper:hover .img-zoom-hover {
-    transform: scale(1.1);
+    transform: scale(1.04);
 }
 
-/* 5. Kartu Layanan (Blue Card) - Shine & Lift Effect */
-.service-card-blue {
-    background-color: #0046b8;
-    color: white;
-    border-radius: 1.2rem;
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    height: 100%;
-    display: block;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-/* Efek kilauan cahaya saat di-hover */
-.service-card-blue::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%; width: 50%; height: 100%;
-    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-    transform: skewX(-25deg);
-    transition: 0.7s;
-    z-index: -1;
-}
-.service-card-blue:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 25px 50px rgba(0, 70, 184, 0.4);
-    color: white;
-}
-.service-card-blue:hover::before {
-    animation: shine 0.8s forwards;
-}
-@keyframes shine {
-    100% { left: 200%; }
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.bg-white.shadow-sm {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-/* 6. Kotak Statistik Berdenyut */
-.stats-box {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.stats-box:hover {
-    transform: scale(1.08) translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    z-index: 2;
+.bg-white.shadow-sm:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(15, 23, 42, 0.08) !important;
 }
 
-/* 7. Efek Mitra/Partner (Grayscale ke Berwarna) */
+
+/* =========================================================
+   PARTNER
+   ========================================================= */
+
 .partner-logo {
-    transition: all 0.4s ease;
-    filter: grayscale(100%) opacity(50%);
-    cursor: pointer;
-}
-.partner-logo:hover {
-    filter: grayscale(0%) opacity(100%);
-    transform: scale(1.15);
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
 }
 
-/* 8. Garis Bawah Navigasi yang Lebih Mulus */
-.nav-hover-line::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 3px;
-    bottom: -3px;
-    left: 50%;
-    background-color: #0046b8;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    transform: translateX(-50%);
-    border-radius: 2px;
+.partner-logo:hover {
+    transform: translateY(-3px);
+
+    opacity: 1 !important;
 }
-.nav-hover-line:hover::after {
-    width: 80%;
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-box {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.stats-box:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    margin-top: 80px;
+
+    padding-top: 65px;
+
+    background-color: #0b1f36;
+
+    color: white;
+}
+
+
+/* Footer brand */
+
+.footer-brand {
+    color: white;
+}
+
+.footer-brand:hover {
+    color: white;
+}
+
+.footer-brand-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--primary);
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-size: 1.25rem;
+}
+
+.footer-brand-title {
+    display: block;
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+}
+
+.footer-brand-subtitle {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #75aaff;
+
+    font-size: 0.68rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+/* Footer description */
+
+.footer-description {
+    max-width: 390px;
+
+    margin-bottom: 25px;
+
+    color: #a9b7c7;
+
+    font-size: 0.9rem;
+
+    line-height: 1.8;
+}
+
+
+/* Social */
+
+.footer-social {
+    display: flex;
+
+    gap: 9px;
+}
+
+.footer-social a {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.footer-social a:hover {
+    background-color: var(--primary);
+
+    color: white;
+
+    transform: translateY(-3px);
+}
+
+
+/* Footer heading */
+
+.footer-heading {
+    margin-bottom: 22px;
+
+    color: white;
+
+    font-size: 0.95rem;
+
+    font-weight: 700;
+}
+
+
+/* Footer links */
+
+.footer-links {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #a9b7c7;
+
+    font-size: 0.88rem;
+
+    text-decoration: none;
+
+    transition:
+        color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+.footer-links a:hover {
+    padding-left: 4px;
+
+    color: white;
+}
+
+
+/* Footer contact */
+
+.footer-contact-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 16px;
+}
+
+.footer-contact-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background-color: rgba(255, 255, 255, 0.08);
+
+    color: #75aaff;
+
+    font-size: 0.8rem;
+}
+
+.footer-contact-item p {
+    margin: 0;
+
+    color: #a9b7c7;
+
+    font-size: 0.84rem;
+
+    line-height: 1.7;
+}
+
+
+/* Footer bottom */
+
+.footer-bottom {
+    margin-top: 55px;
+
+    padding: 22px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: #8091a5;
+
+    font-size: 0.8rem;
+}
+
+.footer-tagline {
+    color: #a9b7c7;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+    .site-navbar {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .site-navbar .navbar-nav {
+        padding-top: 15px;
+    }
+
+    .site-navbar .nav-item {
+        margin: 2px 0;
+    }
+
+    .site-navbar .nav-link {
+        padding: 11px 12px !important;
+    }
+
+    .site-navbar .nav-link.active::after {
+        display: none;
+    }
+
+    .site-navbar .dropdown-menu {
+        margin-top: 2px !important;
+
+        box-shadow: none;
+
+        border: 1px solid var(--border) !important;
+    }
+
+    .navbar-cta {
+        justify-content: center;
+
+        width: 100%;
+
+        margin-top: 8px;
+    }
+
+}
+
+
+@media (max-width: 767.98px) {
+
+    .brand-title {
+        font-size: 0.9rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.6rem;
+    }
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .site-footer {
+        margin-top: 50px;
+
+        padding-top: 50px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+    }
+
+}
+
+
+@media (max-width: 575.98px) {
+
+    .container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .brand-title {
+        font-size: 0.82rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.55rem;
+    }
+
 }
