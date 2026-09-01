@@ -21,6 +21,20 @@
                             <label class="font-weight-bold text-dark">Nama Spesialisasi</label>
                             <input type="text" class="form-control" name="name" placeholder="Contoh: Spesialis Anak" required>
                         </div>
+                        
+                        <!-- TAMBAHAN: Input Ikon -->
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold text-dark">Ikon (FontAwesome)</label>
+                            <input type="text" class="form-control" name="icon" placeholder="Contoh: fas fa-bone">
+                            <small class="text-muted">Cari ikon di fontawesome.com</small>
+                        </div>
+
+                        <!-- TAMBAHAN: Input Deskripsi -->
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark">Deskripsi</label>
+                            <textarea class="form-control" name="description" rows="4" placeholder="Tulis deskripsi spesialisasi..."></textarea>
+                        </div>
+
                         <button type="submit" class="btn btn-primary w-100 shadow-sm">
                             <i class="fas fa-plus me-1"></i> Simpan Spesialisasi
                         </button>
@@ -42,25 +56,73 @@
                                 <tr>
                                     <th width="10%" class="text-center">No</th>
                                     <th>Nama Spesialisasi</th>
-                                    <th width="20%" class="text-center">Aksi</th>
+                                    <!-- Tambahan Kolom Ikon -->
+                                    <th class="text-center">Ikon</th>
+                                    <th width="25%" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if(!empty($specialties)): ?>
                                     <?php $i=1; foreach($specialties as $s): ?>
                                     <tr>
-                                        <td class="text-center"><?= $i++; ?></td>
-                                        <td class="font-weight-bold text-dark"><?= htmlspecialchars($s->name); ?></td>
-                                        <td class="text-center">
-                                            <a href="<?= base_url('specialties/delete/'.$s->id); ?>" class="btn btn-danger btn-sm shadow-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus spesialisasi ini?');">
+                                        <td class="text-center align-middle"><?= $i++; ?></td>
+                                        <td class="font-weight-bold text-dark align-middle"><?= htmlspecialchars($s->name); ?></td>
+                                        <td class="text-center align-middle">
+                                            <?php if(!empty($s->icon)): ?>
+                                                <i class="<?= htmlspecialchars($s->icon); ?> fa-lg text-primary"></i>
+                                            <?php else: ?>
+                                                <span class="badge bg-secondary">Tidak ada</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <!-- TAMBAHAN: Tombol Edit memanggil Modal -->
+                                            <button type="button" class="btn btn-warning btn-sm shadow-sm mb-1" data-bs-toggle="modal" data-bs-target="#editModal<?= $s->id; ?>">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                            
+                                            <a href="<?= base_url('specialties/delete/'.$s->id); ?>" class="btn btn-danger btn-sm shadow-sm mb-1" onclick="return confirm('Apakah Anda yakin ingin menghapus spesialisasi ini?');">
                                                 <i class="fas fa-trash"></i> Hapus
                                             </a>
                                         </td>
                                     </tr>
+
+                                    <!-- TAMBAHAN: Modal Edit Spesialisasi -->
+                                    <div class="modal fade" id="editModal<?= $s->id; ?>" tabindex="-1" aria-labelledby="editModalLabel<?= $s->id; ?>" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title font-weight-bold text-primary" id="editModalLabel<?= $s->id; ?>">Edit Spesialisasi</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="<?= base_url('specialties/update/'.$s->id); ?>" method="POST">
+                                                    <div class="modal-body text-start">
+                                                        <div class="form-group mb-3">
+                                                            <label class="font-weight-bold text-dark">Nama Spesialisasi</label>
+                                                            <input type="text" class="form-control" name="name" value="<?= htmlspecialchars($s->name); ?>" required>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label class="font-weight-bold text-dark">Ikon (FontAwesome)</label>
+                                                            <input type="text" class="form-control" name="icon" value="<?= htmlspecialchars($s->icon); ?>">
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label class="font-weight-bold text-dark">Deskripsi</label>
+                                                            <textarea class="form-control" name="description" rows="4"><?= htmlspecialchars($s->description); ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Akhir Modal Edit -->
+
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="3" class="text-center text-muted py-4">Belum ada data spesialisasi.</td>
+                                        <td colspan="4" class="text-center text-muted py-4">Belum ada data spesialisasi.</td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>

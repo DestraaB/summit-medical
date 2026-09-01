@@ -28,4 +28,11 @@ class Specialty_model extends CI_Model
     {
         return $this->db->delete($this->table, ['id' => $id]);
     }
+
+    public function update($id, $data)
+    {
+        $this->db->where('id', $id);
+        // Pastikan 'specialties' adalah nama tabel yang benar di database Anda
+        $this->db->update('specialties', $data); 
+    }
 }

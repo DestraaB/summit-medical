@@ -55,15 +55,38 @@ class Specialties extends CI_Controller
             $this->load->view('templates/admin/navbar', $data);
             $this->load->view('admin/specialties/index', $data);
             $this->load->view('templates/admin/footer', $data);
-        } else {
+       } else {
             $insert_data = [
-                'name' => $this->input->post('name', TRUE)
+                'name'        => $this->input->post('name', TRUE),
+                'icon'        => $this->input->post('icon', TRUE), // Tambahan tangkap ikon
+                'description' => $this->input->post('description', TRUE) // Tambahan tangkap deskripsi
             ];
             $this->Specialty_model->insert($insert_data);
             $this->session->set_flashdata('success', 'Spesialisasi berhasil ditambahkan.');
             redirect('specialties/admin_index');
         }
     }
+
+    public function update($id)
+    {
+        if (!$this->session->userdata('logged_in')) {
+            redirect('auth');
+        }
+
+        // Tangkap data dari form edit
+        $update_data = [
+            'name'        => $this->input->post('name', TRUE),
+            'icon'        => $this->input->post('icon', TRUE),
+            'description' => $this->input->post('description', TRUE)
+        ];
+
+        // Pastikan di Specialty_model ada fungsi update($id, $data)
+        $this->Specialty_model->update($id, $update_data);
+        $this->session->set_flashdata('success', 'Spesialisasi berhasil diperbarui.');
+        redirect('specialties/admin_index');
+    }
+
+    
 
     public function delete($id)
     {
@@ -75,4 +98,6 @@ class Specialties extends CI_Controller
         $this->session->set_flashdata('success', 'Spesialisasi berhasil dihapus.');
         redirect('specialties/admin_index');
     }
+
+    
 }
