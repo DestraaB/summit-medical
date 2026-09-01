@@ -6,7 +6,9 @@
         <div class="col-md-6 px-md-5">
             <h1 class="h2 text-primary mb-3" style="font-weight: 700;">Tentang Summit Medical Center</h1>
             <p class="text-muted lead">Melayani dengan Hati, Merawat dengan Inovasi.</p>
-            <p class="text-muted"><?= nl2br(htmlspecialchars($profile->about_text)); ?></p>
+            
+            <!-- Bagian ini yang diperbaiki (diubah menjadi description) -->
+            <p class="text-muted"><?= nl2br(htmlspecialchars($profile->description)); ?></p>
         </div>
     </div>
 

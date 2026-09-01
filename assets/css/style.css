@@ -967,3 +967,161 @@ a {
 
 }
 
+/* =========================================
+   CSS UNTUK HALAMAN SPESIALISASI
+========================================= */
+
+/* --- Bagian Header Halaman --- */
+.page-header {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, #f8fbfc 0%, #eef5fc 100%);
+    border-bottom: 1px solid #e5eff8;
+}
+
+.section-label {
+    display: inline-block;
+    color: #0056b3; /* Warna biru medis */
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    background: rgba(0, 86, 179, 0.1);
+    padding: 6px 15px;
+    border-radius: 20px;
+}
+
+.page-header h1 {
+    font-size: 40px;
+    font-weight: 800;
+    color: #2c3e50; /* Warna teks gelap elegan */
+    margin-bottom: 20px;
+}
+
+.page-header h1 span {
+    color: #0056b3;
+}
+
+.page-header p {
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* --- Bagian Grid Spesialisasi --- */
+.specialties-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.specialties-grid {
+    display: grid;
+    /* Membuat grid otomatis responsif: minimal lebar kotak 300px */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px; /* Batas lebar konten */
+    margin: 0 auto;
+}
+
+/* --- Tampilan Kartu Spesialisasi --- */
+.specialty-card {
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 16px;
+    padding: 35px 30px;
+    text-decoration: none !important; /* Menghilangkan garis bawah link */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* Efek saat kartu disorot mouse */
+.specialty-card:hover {
+    transform: translateY(-10px); /* Kartu naik sedikit */
+    box-shadow: 0 15px 30px rgba(0, 86, 179, 0.12); /* Bayangan membesar */
+    border-color: #cce0f5;
+}
+
+/* --- Ikon Spesialisasi --- */
+.specialty-icon {
+    width: 80px;
+    height: 80px;
+    background: #f0f6fc;
+    color: #0056b3;
+    border-radius: 20px; /* Bentuk kotak melengkung */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: 25px;
+    transition: all 0.4s ease;
+}
+
+/* Ikon berubah warna saat kartu disorot */
+.specialty-card:hover .specialty-icon {
+    background: #0056b3;
+    color: #ffffff;
+    transform: scale(1.05) rotate(5deg); /* Efek membesar & sedikit miring */
+}
+
+/* --- Teks Info --- */
+.specialty-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+.specialty-card:hover .specialty-info h3 {
+    color: #0056b3;
+}
+
+.specialty-info p {
+    color: #6c757d;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    
+    /* Trik CSS untuk memotong teks maksimal 3 baris jika kepanjangan */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --- Link 'Lihat Selengkapnya' --- */
+.specialty-link {
+    color: #0056b3;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: auto; /* Mendorong link ke posisi paling bawah kartu */
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+/* Efek panah bergerak ke kanan */
+.specialty-card:hover .specialty-link {
+    letter-spacing: 0.5px;
+    padding-left: 5px;
+}
+
+/* --- Tampilan jika data kosong --- */
+.specialty-empty {
+    grid-column: 1 / -1; /* Mengisi penuh lebar grid */
+    text-align: center;
+    padding: 60px 20px;
+    background: #f8fbfc;
+    border: 2px dashed #cce0f5;
+    border-radius: 12px;
+    color: #6c757d;
+    font-size: 18px;
+}
+
+
+
