@@ -35,6 +35,8 @@
     <link
         rel="stylesheet"
         href="<?= base_url('assets/css/style.css'); ?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/contact.css'); ?>">   
+        <link rel="stylesheet" href="<?= base_url('assets/css/page-animations.css'); ?>">
 
 </head>
 

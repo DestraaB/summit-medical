@@ -1,54 +1,183 @@
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <!-- Breadcrumb -->
-            <nav aria-label="breadcrumb" class="mb-4">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= base_url(); ?>" class="text-decoration-none">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="<?= base_url('services'); ?>" class="text-decoration-none">Layanan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($service->name); ?></li>
-                </ol>
-            </nav>
+<div class="service-detail-page">
 
-            <!-- Card Konten Detail -->
-            <div class="card border-0 shadow-sm" style="border-radius: 1.5rem; overflow: hidden;">
-                
-                <!-- === BAGIAN GAMBAR LAYANAN === -->
-                <?php if (!empty($service->image)) : ?>
-                    <img src="<?= base_url('uploads/services/' . $service->image); ?>" class="card-img-top" alt="<?= htmlspecialchars($service->name); ?>" style="width: 100%; max-height: 450px; object-fit: cover;">
-                <?php else : ?>
-                    <!-- Gambar fallback jika belum ada foto -->
-                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80" class="card-img-top" alt="Default Service" style="width: 100%; max-height: 450px; object-fit: cover;">
-                <?php endif; ?>
-                <!-- ============================== -->
 
-                <!-- Banner Biru -->
-                <div class="p-5 text-center text-white" style="background-color: #0046b8;">
-                    <!-- Memanggil Ikon Dinamis dari Database -->
-                    <i class="<?= htmlspecialchars($service->icon); ?> fa-4x mb-3"></i>
-                    <h1 class="h2 fw-bold mb-0"><?= htmlspecialchars($service->name); ?></h1>
-                </div>
-                
-                <!-- Deskripsi -->
-                <div class="card-body p-4 p-md-5">
-                    <h5 class="fw-bold mb-4 text-dark"><i class="fas fa-info-circle text-primary me-2"></i>Informasi Layanan</h5>
-                    <p class="text-muted" style="line-height: 1.8; font-size: 1.05rem;">
-                        <?= nl2br(htmlspecialchars($service->description)); ?>
-                    </p>
-                    
-                    <hr class="my-5">
-                    
-                    <!-- Tombol Aksi -->
-                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
-                        <a href="<?= base_url('services'); ?>" class="btn btn-outline-secondary rounded-pill px-4 w-100 w-sm-auto">
-                            <i class="fas fa-arrow-left me-2"></i> Kembali ke Daftar Layanan
-                        </a>
-                        <a href="<?= base_url('contact'); ?>" class="btn text-white rounded-pill px-4 w-100 w-sm-auto" style="background-color: #0046b8;">
-                            Konsultasi Sekarang <i class="fas fa-arrow-right ms-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- =========================
+     BREADCRUMB
+     ========================= -->
+<section class="detail-top">
+
+    <div class="container">
+
+        <nav aria-label="breadcrumb">
+
+            <ol class="breadcrumb service-breadcrumb">
+
+                <li class="breadcrumb-item">
+                    <a href="<?= base_url(); ?>">
+                        Beranda
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item">
+                    <a href="<?= base_url('services'); ?>">
+                        Layanan
+                    </a>
+                </li>
+
+                <li class="breadcrumb-item active">
+                    <?= htmlspecialchars($service->name); ?>
+                </li>
+
+            </ol>
+
+        </nav>
+
     </div>
+
+</section>
+
+
+<!-- =========================
+     MAIN DETAIL
+     ========================= -->
+<section class="detail-content">
+
+    <div class="container">
+
+        <div class="service-detail-card">
+
+
+            <!-- IMAGE -->
+            <div class="detail-image-wrapper">
+
+                <?php if (!empty($service->image)) : ?>
+
+                    <img
+                        src="<?= base_url('uploads/services/' . $service->image); ?>"
+                        alt="<?= htmlspecialchars($service->name); ?>"
+                        class="detail-image"
+                    >
+
+                <?php else : ?>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80"
+                        alt="<?= htmlspecialchars($service->name); ?>"
+                        class="detail-image"
+                    >
+
+                <?php endif; ?>
+
+
+                <div class="detail-image-overlay"></div>
+
+
+                <div class="detail-image-content">
+
+                    <div class="detail-service-icon">
+
+                        <i class="<?= htmlspecialchars($service->icon); ?>"></i>
+
+                    </div>
+
+                    <span>
+                        SUMMIT MEDICAL CENTER
+                    </span>
+
+                    <h1>
+                        <?= htmlspecialchars($service->name); ?>
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <!-- INFORMATION -->
+            <div class="detail-body">
+
+                <div class="detail-label">
+                    <i class="fas fa-circle-info"></i>
+                    INFORMASI LAYANAN
+                </div>
+
+                <h2>
+                    <?= htmlspecialchars($service->name); ?>
+                </h2>
+
+                <div class="detail-description">
+
+                    <?= nl2br(htmlspecialchars($service->description)); ?>
+
+                </div>
+
+
+                <div class="detail-divider"></div>
+
+
+                <!-- ACTION -->
+                <div class="detail-actions">
+
+                    <a
+                        href="<?= base_url('services'); ?>"
+                        class="detail-back"
+                    >
+                        <i class="fas fa-arrow-left"></i>
+                        Kembali ke Layanan
+                    </a>
+
+
+                    <a
+                        href="<?= base_url('contact'); ?>"
+                        class="detail-contact"
+                    >
+                        Konsultasi Sekarang
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOTTOM INFO
+     ========================= -->
+<section class="detail-info">
+
+    <div class="container">
+
+        <div class="detail-info-box">
+
+            <div class="detail-info-icon">
+                <i class="fas fa-shield-heart"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    Pelayanan Berorientasi pada Pasien
+                </strong>
+
+                <p>
+                    Summit Medical Center berkomitmen memberikan
+                    pelayanan kesehatan yang aman, profesional,
+                    dan mengutamakan kenyamanan pasien.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 </div>

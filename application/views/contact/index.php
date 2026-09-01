@@ -1,99 +1,268 @@
-<div class="container mt-5 mb-5">
-    <div class="row mb-5 text-center">
-        <div class="col-12">
-            <h1 class="h2 font-weight-bold text-primary">Hubungi Kami</h1>
-            <p class="text-muted">Kami siap melayani dan menjawab pertanyaan Anda terkait layanan kesehatan di Summit Medical Center.</p>
-        </div>
+<div class="contact-page">
+
+
+<!-- HEADER -->
+<section class="contact-header">
+    <div class="contact-header-content">
+        <span class="contact-eyebrow">
+            <i class="fas fa-headset"></i>
+            CONTACT CENTER
+        </span>
+
+        <h1>Hubungi Kami</h1>
+
+        <p>
+            Kami siap membantu menjawab pertanyaan dan memberikan
+            informasi mengenai layanan kesehatan Summit Medical Center.
+        </p>
     </div>
+</section>
 
-    <div class="row">
-        <!-- Informasi Kontak -->
-        <div class="col-md-5 mb-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body p-4">
-                    <h4 class="font-weight-bold mb-4 text-dark">Informasi Kontak</h4>
-                    
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="text-primary me-3 mt-1">
-                            <i class="fas fa-map-marker-alt fa-2x"></i>
-                        </div>
-                        <div>
-                            <h6 class="font-weight-bold mb-1">Alamat</h6>
-                            <p class="text-muted mb-0"><?= nl2br(htmlspecialchars($profile->address)); ?></p>
-                        </div>
-                    </div>
 
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="text-primary me-3 mt-1">
-                            <i class="fas fa-phone-alt fa-2x"></i>
-                        </div>
-                        <div>
-                            <h6 class="font-weight-bold mb-1">Telepon</h6>
-                            <p class="text-muted mb-0"><?= htmlspecialchars($profile->phone); ?></p>
-                        </div>
-                    </div>
+<!-- CONTENT -->
+<section class="contact-content">
 
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="text-primary me-3 mt-1">
-                            <i class="fas fa-envelope fa-2x"></i>
-                        </div>
-                        <div>
-                            <h6 class="font-weight-bold mb-1">Email</h6>
-                            <p class="text-muted mb-0"><?= htmlspecialchars($profile->email); ?></p>
-                        </div>
-                    </div>
-                    
-                    <hr class="my-4">
-                    
-                    <h6 class="font-weight-bold mb-3 text-dark">Jam Operasional</h6>
-                    <ul class="list-unstyled text-muted small">
-                        <li class="mb-2 d-flex justify-content-between"><span>IGD & Rawat Inap:</span> <span class="font-weight-bold text-primary">24 Jam</span></li>
-                        <li class="d-flex justify-content-between"><span>Poliklinik (Senin-Sabtu):</span> <span>08:00 - 20:00 WIB</span></li>
-                    </ul>
+    <div class="contact-grid">
+
+        <!-- =========================
+             INFORMASI KONTAK
+             ========================= -->
+        <div class="contact-info-card">
+
+            <div class="contact-card-heading">
+                <span class="contact-heading-icon">
+                    <i class="fas fa-hospital"></i>
+                </span>
+
+                <div>
+                    <span>INFORMATION</span>
+                    <h2>Informasi Kontak</h2>
                 </div>
             </div>
-        </div>
 
-        <!-- Form Pesan -->
-        <div class="col-md-7 mb-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body p-4">
-                    <h4 class="font-weight-bold mb-4 text-dark">Kirim Pesan</h4>
-                    
-                    <!-- Menampilkan alert sukses jika berhasil dikirim -->
-                    <?php if ($this->session->flashdata('success_msg')): ?>
-                        <div class="alert alert-success rounded-pill px-4 text-center">
-                            <i class="fas fa-check-circle me-2"></i> <?= $this->session->flashdata('success_msg'); ?>
-                        </div>
-                    <?php endif; ?>
 
-                    <form action="<?= base_url('contact'); ?>" method="POST">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="name" class="form-label fw-semibold">Nama Lengkap</label>
-                                <!-- Tambahkan name="name" -->
-                                <input type="text" class="form-control bg-light border-0" id="name" name="name" placeholder="Masukkan nama Anda" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label fw-semibold">Alamat Email</label>
-                                <!-- Tambahkan name="email" -->
-                                <input type="email" class="form-control bg-light border-0" id="email" name="email" placeholder="nama@email.com" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="subject" class="form-label fw-semibold">Subjek</label>
-                            <!-- Tambahkan name="subject" -->
-                            <input type="text" class="form-control bg-light border-0" id="subject" name="subject" placeholder="Topik pesan" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="form-label fw-semibold">Pesan</label>
-                            <!-- Tambahkan name="message" -->
-                            <textarea class="form-control bg-light border-0" id="message" name="message" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary px-4 rounded-pill">Kirim Pesan <i class="fas fa-paper-plane ms-2"></i></button>
-                    </form>
+            <!-- ALAMAT -->
+            <div class="contact-info-item">
+
+                <div class="contact-info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
                 </div>
+
+                <div class="contact-info-text">
+                    <span>Alamat</span>
+                    <p>
+                        <?= nl2br(htmlspecialchars($profile->address)); ?>
+                    </p>
+                </div>
+
             </div>
+
+
+            <!-- TELEPON -->
+            <div class="contact-info-item">
+
+                <div class="contact-info-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+
+                <div class="contact-info-text">
+                    <span>Telepon</span>
+                    <p>
+                        <?= htmlspecialchars($profile->phone); ?>
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+            <div class="contact-info-item">
+
+                <div class="contact-info-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <div class="contact-info-text">
+                    <span>Email</span>
+                    <p>
+                        <?= htmlspecialchars($profile->email); ?>
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- JAM OPERASIONAL -->
+            <div class="contact-operating">
+
+                <div class="operating-heading">
+                    <i class="far fa-clock"></i>
+                    <span>Jam Operasional</span>
+                </div>
+
+                <div class="operating-row">
+                    <span>IGD & Rawat Inap</span>
+                    <strong>24 Jam</strong>
+                </div>
+
+                <div class="operating-row">
+                    <span>Poliklinik</span>
+                    <strong>08:00 - 20:00 WIB</strong>
+                </div>
+
+                <small>
+                    Senin - Sabtu
+                </small>
+
+            </div>
+
         </div>
+
+
+        <!-- =========================
+             FORM PESAN
+             ========================= -->
+        <div class="contact-form-card">
+
+            <div class="contact-card-heading">
+
+                <span class="contact-heading-icon">
+                    <i class="fas fa-paper-plane"></i>
+                </span>
+
+                <div>
+                    <span>MESSAGE</span>
+                    <h2>Kirim Pesan</h2>
+                </div>
+
+            </div>
+
+
+            <!-- ALERT -->
+            <?php if ($this->session->flashdata('success_msg')): ?>
+
+                <div class="contact-success">
+                    <i class="fas fa-check-circle"></i>
+
+                    <span>
+                        <?= $this->session->flashdata('success_msg'); ?>
+                    </span>
+                </div>
+
+            <?php endif; ?>
+
+
+            <form
+                action="<?= base_url('contact'); ?>"
+                method="POST"
+                class="contact-form"
+            >
+
+                <div class="contact-form-row">
+
+                    <div class="contact-field">
+
+                        <label for="name">
+                            Nama Lengkap
+                        </label>
+
+                        <div class="contact-input">
+                            <i class="fas fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Masukkan nama Anda"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-field">
+
+                        <label for="email">
+                            Alamat Email
+                        </label>
+
+                        <div class="contact-input">
+                            <i class="fas fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="nama@email.com"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-field">
+
+                    <label for="subject">
+                        Subjek
+                    </label>
+
+                    <div class="contact-input">
+                        <i class="fas fa-tag"></i>
+
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            placeholder="Topik pesan"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="contact-field">
+
+                    <label for="message">
+                        Pesan
+                    </label>
+
+                    <div class="contact-textarea">
+
+                        <i class="fas fa-comment-alt"></i>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="6"
+                            placeholder="Tulis pesan Anda di sini..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="contact-submit"
+                >
+                    <span>Kirim Pesan</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+
+            </form>
+
+        </div>
+
     </div>
+
+</section>
+
+
 </div>
