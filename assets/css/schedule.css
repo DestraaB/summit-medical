@@ -1,0 +1,800 @@
+/* =========================================================
+   SUMMIT MEDICAL CENTER
+   DOCTOR SCHEDULE
+   ========================================================= */
+
+
+/* =========================
+   PAGE
+========================= */
+
+.doctor-schedule-page {
+    background-color: #f7f9fc;
+    overflow: hidden;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.doctor-schedule-hero {
+    position: relative;
+    padding: 90px 0;
+    background: linear-gradient(135deg, #003d9e, #0057c8);
+    color: #ffffff;
+    overflow: hidden;
+}
+
+
+.doctor-schedule-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.doctor-schedule-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 16px;
+
+    margin-bottom: 20px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+.doctor-schedule-hero h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+
+    margin-bottom: 20px;
+}
+
+
+.doctor-schedule-hero h1 span {
+    color: #8ddcff;
+}
+
+
+.doctor-schedule-hero p {
+    max-width: 650px;
+
+    font-size: 16px;
+    line-height: 1.9;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   HERO ICON
+========================= */
+
+.doctor-schedule-hero-icon {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.doctor-schedule-icon-circle {
+    width: 180px;
+    height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    font-size: 70px;
+
+    animation: doctorScheduleFloat 4s ease-in-out infinite;
+}
+
+
+@keyframes doctorScheduleFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   HERO DECORATION
+========================= */
+
+.doctor-schedule-shape {
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+}
+
+
+.shape-one {
+    width: 350px;
+    height: 350px;
+
+    right: -120px;
+    top: -120px;
+}
+
+
+.shape-two {
+    width: 220px;
+    height: 220px;
+
+    right: 20%;
+    bottom: -120px;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.doctor-schedule-content {
+    padding: 90px 0;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.doctor-schedule-heading {
+    max-width: 700px;
+
+    margin: 0 auto 55px;
+}
+
+
+.doctor-schedule-heading > span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #0046b8;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+.doctor-schedule-heading h2 {
+    font-size: 38px;
+
+    font-weight: 800;
+
+    color: #1e293b;
+
+    margin-bottom: 15px;
+}
+
+
+.doctor-schedule-heading p {
+    color: #64748b;
+
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.doctor-schedule-card {
+    height: 100%;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    border: 1px solid #edf0f5;
+
+    box-shadow: 0 8px 30px rgba(0, 40, 100, 0.07);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.doctor-schedule-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 20px 45px rgba(0, 70, 184, 0.14);
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.doctor-schedule-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.doctor-schedule-photo {
+    width: 95px;
+    height: 95px;
+
+    min-width: 95px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background: #edf4ff;
+
+    border: 3px solid #edf4ff;
+}
+
+
+.doctor-schedule-photo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* =========================
+   NO PHOTO
+========================= */
+
+.doctor-schedule-no-photo {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg, #dcecff, #edf4ff);
+
+    color: #0046b8;
+
+    font-size: 35px;
+}
+
+
+/* =========================
+   PROFILE INFO
+========================= */
+
+.doctor-schedule-profile-info {
+    min-width: 0;
+}
+
+
+.doctor-schedule-type {
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+    color: #0046b8;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.doctor-schedule-profile-info h3 {
+    font-size: 18px;
+
+    font-weight: 800;
+
+    color: #1e293b;
+
+    line-height: 1.4;
+
+    margin-bottom: 7px;
+}
+
+
+.doctor-schedule-profile-info p {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 7px;
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.doctor-schedule-profile-info p i {
+    margin-top: 3px;
+
+    color: #16a34a;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.doctor-schedule-divider {
+    height: 1px;
+
+    margin: 22px 0;
+
+    background: #edf0f5;
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.doctor-schedule-details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.doctor-schedule-detail-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* ICON */
+
+.doctor-schedule-detail-icon {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #edf4ff;
+
+    color: #0046b8;
+
+    font-size: 16px;
+}
+
+
+/* TEXT */
+
+.doctor-schedule-detail-text small {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.doctor-schedule-detail-text strong {
+    display: block;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   FOOTER CARD
+========================= */
+
+.doctor-schedule-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #edf0f5;
+}
+
+
+/* STATUS */
+
+.doctor-schedule-active {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.doctor-schedule-active span {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    animation: doctorSchedulePulse 2s infinite;
+}
+
+
+@keyframes doctorSchedulePulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.doctor-schedule-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 15px;
+
+    background: #0046b8;
+
+    color: #ffffff;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: all 0.3s ease;
+}
+
+
+.doctor-schedule-button:hover {
+    background: #003b9c;
+
+    color: #ffffff;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.doctor-schedule-empty {
+    text-align: center;
+
+    padding: 70px 20px;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px dashed #cbd5e1;
+}
+
+
+.doctor-schedule-empty > i {
+    font-size: 50px;
+
+    color: #0046b8;
+
+    margin-bottom: 20px;
+}
+
+
+.doctor-schedule-empty h3 {
+    font-weight: 800;
+
+    color: #1e293b;
+}
+
+
+.doctor-schedule-empty p {
+    color: #64748b;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.doctor-schedule-cta {
+    padding-bottom: 90px;
+}
+
+
+.doctor-schedule-cta-box {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 50px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(135deg, #003d9e, #0057c8);
+
+    color: #ffffff;
+
+    box-shadow: 0 20px 50px rgba(0, 70, 184, 0.18);
+}
+
+
+.doctor-schedule-cta-box span {
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #a5ddff;
+}
+
+
+.doctor-schedule-cta-box h2 {
+    margin: 10px 0 12px;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+
+.doctor-schedule-cta-box p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    line-height: 1.7;
+}
+
+
+.doctor-schedule-cta-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 22px;
+
+    background: #ffffff;
+
+    color: #0046b8;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: all 0.3s ease;
+}
+
+
+.doctor-schedule-cta-button:hover {
+    color: #0046b8;
+
+    transform: translateY(-4px);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+
+    .doctor-schedule-hero h1 {
+        font-size: 42px;
+    }
+
+
+    .doctor-schedule-cta-box {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .doctor-schedule-hero {
+        padding: 70px 0;
+    }
+
+
+    .doctor-schedule-hero h1 {
+        font-size: 34px;
+    }
+
+
+    .doctor-schedule-content {
+        padding: 65px 0;
+    }
+
+
+    .doctor-schedule-heading {
+        margin-bottom: 40px;
+    }
+
+
+    .doctor-schedule-heading h2 {
+        font-size: 30px;
+    }
+
+
+    .doctor-schedule-card {
+        padding: 20px;
+    }
+
+
+    .doctor-schedule-photo {
+        width: 75px;
+        height: 75px;
+
+        min-width: 75px;
+
+        border-radius: 14px;
+    }
+
+
+    .doctor-schedule-profile-info h3 {
+        font-size: 16px;
+    }
+
+
+    .doctor-schedule-footer {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .doctor-schedule-active {
+        justify-content: center;
+    }
+
+
+    .doctor-schedule-button {
+        justify-content: center;
+    }
+
+
+    .doctor-schedule-cta {
+        padding-bottom: 65px;
+    }
+
+
+    .doctor-schedule-cta-box {
+        padding: 35px 25px;
+    }
+
+
+    .doctor-schedule-cta-box h2 {
+        font-size: 25px;
+    }
+
+
+    .doctor-schedule-cta-button {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+}
