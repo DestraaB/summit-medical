@@ -38,7 +38,8 @@
         <link rel="stylesheet" href="<?= base_url('assets/css/contact.css'); ?>">   
         <link rel="stylesheet" href="<?= base_url('assets/css/page-animations.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/schedule.css'); ?>">
-
+        <link rel="stylesheet" href="<?= base_url('assets/css/news.css'); ?>">
+        
 </head>
 
 <body>
