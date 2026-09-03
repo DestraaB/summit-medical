@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="<?= base_url('assets/css/page-animations.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/schedule.css'); ?>">
         <link rel="stylesheet" href="<?= base_url('assets/css/news.css'); ?>">
+        <link rel="stylesheet" href="<?= base_url('assets/css/facilities.css'); ?>">
         
 </head>
 
