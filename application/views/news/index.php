@@ -1,5 +1,5 @@
 <!-- Menyisipkan CSS Eksternal -->
-<link rel="stylesheet" href="<?= base_url('assets/css/news.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/news.css?v=' . time()); ?>">
 
 <!-- --- HTML Struktur Halaman Index Berita --- -->
 <div class="news-hero">
@@ -12,8 +12,12 @@
 
 <div class="news-container">
     <?php if (!empty($news)): ?>
-        <?php foreach ($news as $item): ?>
-            <a href="<?= site_url('news/detail/' . $item->slug); ?>" class="news-card">
+        <?php 
+            $delay = 0.2; // Variabel penentu jeda awal animasi
+            foreach ($news as $item): 
+        ?>
+            <!-- Menyisipkan animasi delay langsung ke atribut style -->
+            <a href="<?= site_url('news/detail/' . $item->slug); ?>" class="news-card" style="animation-delay: <?= $delay; ?>s;">
                 
                 <!-- Gambar Thumbnail -->
                 <div class="news-img-wrapper">
@@ -48,6 +52,7 @@
                 </div>
 
             </a>
+            <?php $delay += 0.15; // Jeda bertambah 0.15 detik untuk kartu berikutnya ?>
         <?php endforeach; ?>
     <?php else: ?>
         <div class="news-empty">

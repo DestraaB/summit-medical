@@ -3,36 +3,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Doctor_model extends CI_Model
 {
+    private $table = 'doctors';
+
     public function getAllDoctors()
     {
-        return $this->db
-            ->order_by('id', 'DESC')
-            ->get('doctors')
-            ->result();
+        $this->db->select('
+            doctors.*,
+            specialties.name AS specialty_name
+        ');
+
+        $this->db->from($this->table);
+
+        $this->db->join(
+            'specialties',
+            'specialties.id = doctors.specialty_id',
+            'left'
+        );
+
+        $this->db->order_by('doctors.id', 'DESC');
+
+        return $this->db->get()->result();
     }
+
 
     public function getDoctorById($id)
     {
-        return $this->db
-            ->where('id', $id)
-            ->get('doctors')
-            ->row();
+        $this->db->select('
+            doctors.*,
+            specialties.name AS specialty_name
+        ');
+
+        $this->db->from($this->table);
+
+        $this->db->join(
+            'specialties',
+            'specialties.id = doctors.specialty_id',
+            'left'
+        );
+
+        $this->db->where('doctors.id', $id);
+
+        return $this->db->get()->row();
     }
+
 
     public function insertDoctor($data)
     {
-        return $this->db->insert('doctors', $data);
+        return $this->db->insert($this->table, $data);
     }
+
 
     public function updateDoctor($id, $data)
     {
         $this->db->where('id', $id);
-        return $this->db->update('doctors', $data);
+
+        return $this->db->update($this->table, $data);
     }
+
 
     public function deleteDoctor($id)
     {
         $this->db->where('id', $id);
-        return $this->db->delete('doctors');
+
+        return $this->db->delete($this->table);
     }
 }
