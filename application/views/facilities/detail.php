@@ -4,6 +4,96 @@
 
 <link rel="stylesheet" href="<?= base_url('assets/css/facilities.css'); ?>">
 
+<!-- TAMBAHAN: CSS Animasi Halus -->
+<style>
+    /* --- Keyframes Animasi --- */
+    @keyframes slideInLeftFac {
+        0% { opacity: 0; transform: translateX(-50px); }
+        100% { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRightFac {
+        0% { opacity: 0; transform: translateX(50px); }
+        100% { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes fadeInUpFac {
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatingDeco {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+    }
+
+    /* --- Menerapkan Animasi ke Elemen --- */
+    
+    /* Teks sebelah kiri meluncur dari kiri */
+    .facility-detail-content {
+        opacity: 0;
+        animation: slideInLeftFac 0.8s ease-out forwards;
+    }
+
+    /* Gambar sebelah kanan meluncur dari kanan dengan jeda 0.2s */
+    .facility-detail-image-wrapper {
+        opacity: 0;
+        animation: slideInRightFac 0.8s ease-out 0.2s forwards;
+    }
+
+    /* Ornamen ikon pada gambar dibuat melayang */
+    .facility-detail-image-decoration {
+        animation: floatingDeco 4s ease-in-out infinite;
+    }
+
+    /* Kartu konten di tengah meluncur dari bawah dengan jeda 0.4s */
+    .facility-information-card {
+        opacity: 0;
+        animation: fadeInUpFac 0.8s ease-out 0.4s forwards;
+        transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+    
+    /* Efek hover membal halus pada kartu konten */
+    .facility-information-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 86, 179, 0.1) !important;
+    }
+
+    /* Box CTA paling bawah meluncur dari bawah dengan jeda 0.6s */
+    .facility-detail-cta-box {
+        opacity: 0;
+        animation: fadeInUpFac 0.8s ease-out 0.6s forwards;
+    }
+
+    /* Transisi halus (Smooth Hover) pada semua tombol */
+    .detail-primary-button, .detail-secondary-button, 
+    .back-facility-button, .contact-facility-button, 
+    .facility-detail-cta-box a {
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+
+    .detail-primary-button:hover, .detail-secondary-button:hover, 
+    .back-facility-button:hover, .contact-facility-button:hover, 
+    .facility-detail-cta-box a:hover {
+        transform: translateY(-4px);
+    }
+    
+    /* Animasi ikon panah dalam tombol */
+    .detail-primary-button i, .detail-secondary-button i, 
+    .back-facility-button i, .contact-facility-button i, 
+    .facility-detail-cta-box a i {
+        transition: transform 0.3s ease;
+    }
+    
+    .detail-secondary-button:hover i, .back-facility-button:hover i {
+        transform: translateX(-5px); /* Panah kiri bergeser ke kiri */
+    }
+    
+    .detail-primary-button:hover i, .contact-facility-button:hover i, .facility-detail-cta-box a:hover i {
+        transform: translateX(5px); /* Panah kanan/pesawat bergeser ke kanan */
+    }
+</style>
+
 <div class="facility-detail-page">
 
 

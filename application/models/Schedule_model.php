@@ -6,37 +6,50 @@ class Schedule_model extends CI_Model
     // =====================================
     // MENGAMBIL SEMUA JADWAL UNTUK PUBLIK
     // =====================================
-    public function get_all()
-    {
-        $this->db->select('
-            doctor_schedules.*,
-            doctors.name AS doctor_name,
-            doctors.photo AS doctor_photo,
-            specialties.name AS specialty_name
-        ');
+public function get_all()
+{
+    $this->db->select('
+        doctor_schedules.*,
+        doctors.name as doctor_name,
+        specialties.name as specialty_name
+    ');
 
-        $this->db->from('doctor_schedules');
+    $this->db->from('doctor_schedules');
 
-        // JOIN TABLE DOCTORS
-        $this->db->join(
-            'doctors',
-            'doctors.id = doctor_schedules.doctor_id',
-            'left'
-        );
+    $this->db->join(
+        'doctors',
+        'doctors.id = doctor_schedules.doctor_id',
+        'left'
+    );
 
-        // JOIN TABLE SPECIALTIES
-        $this->db->join(
-            'specialties',
-            'specialties.id = doctors.specialty_id',
-            'left'
-        );
+    $this->db->join(
+        'specialties',
+        'specialties.id = doctors.specialty_id',
+        'left'
+    );
 
-        // Urutkan berdasarkan nama dokter
-        $this->db->order_by('doctors.name', 'ASC');
+    // Urutkan berdasarkan hari
+    $this->db->order_by("
+        FIELD(
+            doctor_schedules.day,
+            'Senin',
+            'Selasa',
+            'Rabu',
+            'Kamis',
+            'Jumat',
+            'Sabtu',
+            'Minggu'
+        )
+    ", '', FALSE);
 
-        return $this->db->get()->result();
-    }
+    // Jika hari sama, urutkan berdasarkan jam mulai
+    $this->db->order_by(
+        'doctor_schedules.start_time',
+        'ASC'
+    );
 
+    return $this->db->get()->result();
+}
 
     // =====================================
     // MENAMBAH JADWAL

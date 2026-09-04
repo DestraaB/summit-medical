@@ -29,9 +29,9 @@
                         </h1>
 
                         <p>
-                            Temukan informasi jadwal praktik dokter
-                            di Summit Medical Center dan rencanakan
-                            kunjungan Anda dengan lebih mudah.
+                            Temukan informasi jadwal praktik dokter di
+                            Summit Medical Center dan rencanakan kunjungan
+                            Anda dengan lebih mudah.
                         </p>
 
                     </div>
@@ -60,7 +60,6 @@
 
 
         <!-- Decorative -->
-
         <div class="doctor-schedule-shape shape-one"></div>
         <div class="doctor-schedule-shape shape-two"></div>
 
@@ -71,14 +70,12 @@
     <!-- =========================
          MAIN CONTENT
     ========================== -->
-
     <section class="doctor-schedule-content">
 
         <div class="container">
 
 
             <!-- Heading -->
-
             <div
                 class="doctor-schedule-heading text-center"
                 data-aos="fade-up"
@@ -86,13 +83,11 @@
 
                 <span>SUMMIT MEDICAL CENTER</span>
 
-                <h2>
-                    Jadwal Dokter Kami
-                </h2>
+                <h2>Jadwal Dokter Kami</h2>
 
                 <p>
-                    Informasi jadwal praktik dokter yang tersedia
-                    untuk membantu Anda mempersiapkan kunjungan.
+                    Informasi jadwal praktik dokter yang tersedia untuk
+                    membantu Anda mempersiapkan kunjungan.
                 </p>
 
             </div>
@@ -100,231 +95,210 @@
 
 
             <!-- =========================
-                 SCHEDULE LIST
+                 TABLE SCHEDULE
             ========================== -->
 
-            <div class="row">
+            <?php if (!empty($schedules)) : ?>
+
+                <div
+                    class="doctor-schedule-table-wrapper"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                >
+
+                    <div class="table-responsive">
+
+                        <table class="table doctor-schedule-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th class="text-center">No</th>
+
+                                    <th>
+                                        <i class="fas fa-user-md"></i>
+                                        Nama Dokter
+                                    </th>
+
+                                    <th>
+                                        <i class="fas fa-stethoscope"></i>
+                                        Spesialisasi
+                                    </th>
+
+                                    <th>
+                                        <i class="fas fa-calendar-day"></i>
+                                        Hari Praktik
+                                    </th>
+
+                                    <th>
+                                        <i class="far fa-clock"></i>
+                                        Jam Praktik
+                                    </th>
+
+                                    <th class="text-center">
+                                        Status
+                                    </th>
+
+                                </tr>
+
+                            </thead>
 
 
-                <?php if (!empty($schedules)) : ?>
+                            <tbody>
 
-                    <?php foreach ($schedules as $index => $schedule) : ?>
+                                <?php foreach ($schedules as $index => $schedule) : ?>
 
+                                    <tr
+                                        data-aos="fade-up"
+                                        data-aos-delay="<?= ($index % 5) * 80; ?>"
+                                    >
 
-                        <div
-                            class="col-lg-4 col-md-6 mb-4"
-                            data-aos="fade-up"
-                            data-aos-delay="<?= ($index % 3) * 100; ?>"
-                        >
+                                        <!-- NOMOR -->
 
-                            <div class="doctor-schedule-card">
+                                        <td class="text-center schedule-number">
 
+                                            <?= $index + 1; ?>
 
-                                <!-- =====================
-                                     TOP / DOCTOR
-                                ====================== -->
-
-                                <div class="doctor-schedule-profile">
+                                        </td>
 
 
-                                    <!-- PHOTO -->
 
-                                    <div class="doctor-schedule-photo">
+                                        <!-- NAMA DOKTER -->
 
-                                        <?php if (!empty($schedule->doctor_photo)) : ?>
+                                        <td>
 
-                                            <img
-                                                src="<?= base_url('uploads/doctors/' . $schedule->doctor_photo); ?>"
-                                                alt="<?= htmlspecialchars($schedule->doctor_name); ?>"
-                                            >
+                                            <div class="schedule-doctor-name">
 
-                                        <?php else : ?>
-
-                                            <div class="doctor-schedule-no-photo">
-
-                                                <i class="fas fa-user-md"></i>
+                                                <strong>
+                                                    <?= htmlspecialchars($schedule->doctor_name); ?>
+                                                </strong>
 
                                             </div>
 
-                                        <?php endif; ?>
-
-                                    </div>
-
-
-                                    <!-- NAME -->
-
-                                    <div class="doctor-schedule-profile-info">
-
-                                        <span class="doctor-schedule-type">
-                                            DOKTER
-                                        </span>
-
-                                        <h3>
-                                            <?= htmlspecialchars($schedule->doctor_name); ?>
-                                        </h3>
-
-
-                                        <p>
-
-                                            <i class="fas fa-stethoscope"></i>
-
-                                            <?= !empty($schedule->specialty_name)
-                                                ? htmlspecialchars($schedule->specialty_name)
-                                                : 'Spesialisasi belum tersedia'; ?>
-
-                                        </p>
-
-                                    </div>
-
-
-                                </div>
+                                        </td>
 
 
 
-                                <!-- =====================
-                                     DIVIDER
-                                ====================== -->
+                                        <!-- SPESIALISASI -->
 
-                                <div class="doctor-schedule-divider"></div>
+                                        <td>
 
+                                            <span class="schedule-specialty">
 
+                                                <i class="fas fa-stethoscope"></i>
 
-                                <!-- =====================
-                                     SCHEDULE
-                                ====================== -->
+                                                <?= !empty($schedule->specialty_name)
+                                                    ? htmlspecialchars($schedule->specialty_name)
+                                                    : 'Belum tersedia'; ?>
 
-                                <div class="doctor-schedule-details">
+                                            </span>
 
-
-                                    <!-- DAY -->
-
-                                    <div class="doctor-schedule-detail-item">
-
-                                        <div class="doctor-schedule-detail-icon">
-
-                                            <i class="fas fa-calendar-day"></i>
-
-                                        </div>
+                                        </td>
 
 
-                                        <div class="doctor-schedule-detail-text">
 
-                                            <small>
-                                                Hari Praktik
-                                            </small>
+                                        <!-- HARI -->
 
-                                            <strong>
+                                        <td>
+
+                                            <span class="schedule-day">
+
                                                 <?= htmlspecialchars($schedule->day); ?>
-                                            </strong>
 
-                                        </div>
+                                            </span>
 
-                                    </div>
-
-
-
-                                    <!-- TIME -->
-
-                                    <div class="doctor-schedule-detail-item">
-
-                                        <div class="doctor-schedule-detail-icon">
-
-                                            <i class="far fa-clock"></i>
-
-                                        </div>
-
-
-                                        <div class="doctor-schedule-detail-text">
-
-                                            <small>
-                                                Jam Praktik
-                                            </small>
-
-                                            <strong>
-
-                                                <?= date(
-                                                    'H:i',
-                                                    strtotime($schedule->start_time)
-                                                ); ?>
-
-                                                -
-
-                                                <?= date(
-                                                    'H:i',
-                                                    strtotime($schedule->end_time)
-                                                ); ?>
-
-                                                WIB
-
-                                            </strong>
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
+                                        </td>
 
 
 
-                                <!-- =====================
-                                     FOOTER
-                                ====================== -->
+                                        <!-- JAM -->
 
-                                <div class="doctor-schedule-footer">
+                                        <td>
 
-                                    <div class="doctor-schedule-active">
+                                            <div class="schedule-time">
 
-                                        <span></span>
+                                                <i class="far fa-clock"></i>
 
-                                        Jadwal Tersedia
+                                                <span>
 
-                                    </div>
+                                                    <?= date(
+                                                        'H:i',
+                                                        strtotime($schedule->start_time)
+                                                    ); ?>
+
+                                                    -
+
+                                                    <?= date(
+                                                        'H:i',
+                                                        strtotime($schedule->end_time)
+                                                    ); ?>
+
+                                                    WIB
+
+                                                </span>
+
+                                            </div>
+
+                                        </td>
 
 
 
-                                </div>
+                                        <!-- STATUS -->
 
+                                        <td class="text-center">
 
-                            </div>
+                                            <span class="schedule-status">
 
-                        </div>
+                                                <span class="schedule-status-dot"></span>
 
+                                                Tersedia
 
-                    <?php endforeach; ?>
+                                            </span>
 
+                                        </td>
 
-                <?php else : ?>
+                                    </tr>
 
+                                <?php endforeach; ?>
 
-                    <!-- EMPTY -->
+                            </tbody>
 
-                    <div class="col-12">
-
-                        <div
-                            class="doctor-schedule-empty"
-                            data-aos="fade-up"
-                        >
-
-                            <i class="far fa-calendar-times"></i>
-
-                            <h3>
-                                Jadwal Belum Tersedia
-                            </h3>
-
-                            <p>
-                                Saat ini belum ada jadwal praktik dokter.
-                            </p>
-
-                        </div>
+                        </table>
 
                     </div>
 
+                </div>
 
-                <?php endif; ?>
+
+            <?php else : ?>
 
 
-            </div>
+                <!-- =========================
+                     EMPTY STATE
+                ========================== -->
+
+                <div
+                    class="doctor-schedule-empty"
+                    data-aos="fade-up"
+                >
+
+                    <div class="doctor-schedule-empty-icon">
+
+                        <i class="far fa-calendar-times"></i>
+
+                    </div>
+
+                    <h3>Jadwal Belum Tersedia</h3>
+
+                    <p>
+                        Saat ini belum ada jadwal praktik dokter yang tersedia.
+                    </p>
+
+                </div>
+
+
+            <?php endif; ?>
 
 
         </div>
@@ -357,8 +331,9 @@
                     </h2>
 
                     <p>
-                        Hubungi Summit Medical Center untuk informasi
-                        lebih lanjut mengenai jadwal dan layanan kami.
+                        Hubungi Summit Medical Center untuk mendapatkan
+                        informasi lebih lanjut mengenai jadwal dokter
+                        dan layanan kesehatan kami.
                     </p>
 
                 </div>

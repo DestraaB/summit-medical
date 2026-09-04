@@ -88,7 +88,7 @@
 
 <div class="spec-detail-hero">
     <div class="container">
-        <h1><?= htmlspecialchars($specialty->name); ?></h1>
+        <h1><?= htmlspecialchars($specialty->name ?? 'Detail Layanan'); ?></h1>
     </div>
 </div>
 
@@ -105,8 +105,16 @@
             <h2 style="font-size:24px; font-weight:800; color:#2c3e50; margin-bottom: 20px;">Tentang Layanan Ini</h2>
             
             <div class="spec-body-text">
-                <!-- Tampilkan deskripsi lengkap / konten HTML -->
-                <?= !empty($specialty->content) ? $specialty->content : '<p>Informasi detail mengenai layanan ini belum ditambahkan.</p>'; ?>
+                <!-- Di sini letak perbaikannya! Mengecek kolom description, jika tidak ada cek content -->
+                <?php 
+                    if (!empty($specialty->description)) {
+                        echo nl2br(htmlspecialchars($specialty->description)); 
+                    } elseif (!empty($specialty->content)) {
+                        echo $specialty->content;
+                    } else {
+                        echo '<p>Informasi detail mengenai layanan ini belum ditambahkan.</p>';
+                    }
+                ?>
             </div>
         </div>
         

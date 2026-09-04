@@ -4,8 +4,70 @@
 
 <link rel="stylesheet" href="<?= base_url('assets/css/facilities.css'); ?>">
 
-<div class="facilities-page">
+<!-- TAMBAHAN: CSS Animasi Halus -->
+<style>
+    /* --- Keyframes Animasi --- */
+    @keyframes fadeInUpFac {
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInRightFac {
+        0% { opacity: 0; transform: translateX(50px); }
+        100% { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes floatingItem {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
 
+    /* --- Menerapkan Animasi ke Elemen --- */
+    .facilities-hero-content {
+        opacity: 0;
+        animation: fadeInUpFac 0.8s ease-out forwards;
+    }
+
+    .facilities-hero-visual {
+        opacity: 0;
+        animation: slideInRightFac 0.8s ease-out 0.2s forwards;
+    }
+
+    /* Membuat ornamen hero melayang */
+    .floating-medical-card {
+        animation: floatingItem 4s ease-in-out infinite;
+    }
+    .floating-medical-card.card-two {
+        animation-delay: 2s; /* Jeda agar melayangnya tidak bersamaan */
+    }
+
+    .facilities-section-heading {
+        opacity: 0;
+        animation: fadeInUpFac 0.8s ease-out 0.4s forwards;
+    }
+
+    /* Konfigurasi awal kartu sebelum animasi */
+    .facility-aos {
+        opacity: 0; 
+        animation: fadeInUpFac 0.8s ease-out forwards;
+    }
+
+    /* Tambahan efek membal (hover) pada kartu */
+    .facility-card {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease !important;
+    }
+    .facility-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 40px rgba(0, 86, 179, 0.12) !important;
+    }
+
+    .facilities-cta-box {
+        opacity: 0;
+        animation: fadeInUpFac 0.8s ease-out 0.4s forwards; /* Akan tereksekusi saat halaman dimuat */
+    }
+</style>
+
+<div class="facilities-page">
 
     <!-- =========================================
          HERO
@@ -163,11 +225,15 @@
 
                 <div class="row">
 
-                    <?php foreach ($facilities as $f) : ?>
+                    <?php 
+                        $delay = 0.2; // Variabel penentu jeda animasi awal
+                        foreach ($facilities as $f) : 
+                    ?>
 
                         <?php if ($f->status == 1) : ?>
 
-                            <div class="col-lg-4 col-md-6 mb-4 facility-aos">
+                            <!-- Menambahkan style delay langsung ke grid -->
+                            <div class="col-lg-4 col-md-6 mb-4 facility-aos" style="animation-delay: <?= $delay; ?>s;">
 
                                 <div class="facility-card">
 
@@ -228,7 +294,7 @@
 
                                         <p>
 
-                                            <?= htmlspecialchars($f->short_description); ?>
+                                            <?= htmlspecialchars($f->short_description ?? ''); ?>
 
                                         </p>
 
@@ -251,6 +317,8 @@
                                 </div>
 
                             </div>
+
+                            <?php $delay += 0.15; // Tambah jeda untuk elemen berikutnya ?>
 
                         <?php endif; ?>
 
