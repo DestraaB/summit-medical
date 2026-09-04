@@ -196,7 +196,7 @@
             </div>
 
             <!-- TOMBOL JANJI TEMU -->
-            <a href="<?= site_url('schedule'); ?>" class="btn-janji-temu">
+            <a href="<?= site_url('contact'); ?>" class="btn-janji-temu">
                 <i class="fas fa-calendar-check"></i> Buat Janji Temu
             </a>
         </div>

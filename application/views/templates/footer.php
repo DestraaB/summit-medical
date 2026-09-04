@@ -56,7 +56,7 @@
                 <!-- SOCIAL MEDIA -->
                 <div class="footer-social">
 
-                    <a href="#"
+                    <a href="https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2F%3Flocale%3Did_ID"
                        aria-label="Facebook">
 
                         <i class="fab fa-facebook-f"></i>
@@ -64,7 +64,7 @@
                     </a>
 
 
-                    <a href="#"
+                    <a href="https://www.instagram.com/dstrab_"
                        aria-label="Instagram">
 
                         <i class="fab fa-instagram"></i>
@@ -72,7 +72,7 @@
                     </a>
 
 
-                    <a href="#"
+                    <a href="https://www.youtube.com/@TirtaPengPengPeng"
                        aria-label="YouTube">
 
                         <i class="fab fa-youtube"></i>
@@ -80,7 +80,7 @@
                     </a>
 
 
-                    <a href="#"
+                    <a href="https://x.com/?lang=id"
                        aria-label="Twitter">
 
                         <i class="fab fa-twitter"></i>

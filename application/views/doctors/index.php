@@ -173,13 +173,13 @@
 
                 <div class="doctor-info">
                     <h3 class="doctor-name"><?= htmlspecialchars($doc->name); ?></h3>
-                    <p class="doctor-specialty"><?= htmlspecialchars($doc->specialty ?? 'Dokter Spesialis'); ?></p>
+                    <br>
                     
                     <div class="doctor-actions">
                         <a href="<?= site_url('doctors/detail/' . $doc->id); ?>" class="btn-detail-doctor">
                             <i class="fas fa-user-md"></i> Profil
                         </a>
-                        <a href="<?= site_url('schedule'); ?>" class="btn-book-doctor">
+                        <a href="<?= site_url('contact'); ?>" class="btn-book-doctor">
                             <i class="far fa-calendar-check"></i> Janji
                         </a>
                     </div>
