@@ -207,7 +207,7 @@
         <?php if (!empty($services)) : ?>
             <?php foreach (array_slice($services, 0, 6) as $index => $service) : ?>
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<?= $index * 100; ?>">
-                    <a href="<?= base_url('services/detail/' . $service->id); ?>" class="text-decoration-none">
+                    <a href="<?= base_url('services/detail/' . $service->slug); ?>" class="text-decoration-none">
                         <div class="h-100 p-4 bg-white hover-card" style="border-radius: 20px; border: 1px solid #edf1f7;">
                             <div class="d-flex align-items-center justify-content-center mb-4"
                                  style="width: 60px; height: 60px; border-radius: 16px; background-color:#eaf2ff; color:#0046b8;">
